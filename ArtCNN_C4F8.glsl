@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-//!DESC ArtCNN Conv-0
+//!DESC ArtCNN C4F8 (Conv-0)
 //!HOOK LUMA
 //!BIND LUMA
 //!SAVE conv2d_tf
@@ -42,7 +42,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN Conv-0
+//!DESC ArtCNN C4F8 (Conv-0)
 //!HOOK LUMA
 //!BIND LUMA
 //!SAVE conv2d_tf1
@@ -64,7 +64,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN Conv-1-ReLU
+//!DESC ArtCNN C4F8 (Conv-1-ReLU)
 //!HOOK LUMA
 //!BIND conv2d_tf
 //!BIND conv2d_tf1
@@ -97,7 +97,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN Conv-1-ReLU
+//!DESC ArtCNN C4F8 (Conv-1-ReLU)
 //!HOOK LUMA
 //!BIND conv2d_tf
 //!BIND conv2d_tf1
@@ -130,7 +130,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN Conv-2-ReLU
+//!DESC ArtCNN C4F8 (Conv-2-ReLU)
 //!HOOK LUMA
 //!BIND conv2d_1_tf
 //!BIND conv2d_1_tf1
@@ -163,7 +163,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN Conv-2-ReLU
+//!DESC ArtCNN C4F8 (Conv-2-ReLU)
 //!HOOK LUMA
 //!BIND conv2d_1_tf
 //!BIND conv2d_1_tf1
@@ -196,7 +196,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN Conv-3-ReLU
+//!DESC ArtCNN C4F8 (Conv-3-ReLU)
 //!HOOK LUMA
 //!BIND conv2d_2_tf
 //!BIND conv2d_2_tf1
@@ -229,7 +229,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN Conv-3-ReLU
+//!DESC ArtCNN C4F8 (Conv-3-ReLU)
 //!HOOK LUMA
 //!BIND conv2d_2_tf
 //!BIND conv2d_2_tf1
@@ -262,7 +262,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN Conv-4-ReLU
+//!DESC ArtCNN C4F8 (Conv-4-ReLU)
 //!HOOK LUMA
 //!BIND conv2d_3_tf
 //!BIND conv2d_3_tf1
@@ -295,7 +295,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN Conv-4-ReLU
+//!DESC ArtCNN C4F8 (Conv-4-ReLU)
 //!HOOK LUMA
 //!BIND conv2d_3_tf
 //!BIND conv2d_3_tf1
@@ -328,7 +328,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN Conv-5
+//!DESC ArtCNN C4F8 (Conv-5)
 //!HOOK LUMA
 //!BIND conv2d_4_tf
 //!BIND conv2d_4_tf1
@@ -361,7 +361,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN Conv-5
+//!DESC ArtCNN C4F8 (Conv-5)
 //!HOOK LUMA
 //!BIND conv2d_4_tf
 //!BIND conv2d_4_tf1
@@ -394,7 +394,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN Long-Skip-Conv-6
+//!DESC ArtCNN C4F8 (Long-Skip-Conv-6)
 //!HOOK LUMA
 //!BIND conv2d_5_tf
 //!BIND conv2d_tf
@@ -429,7 +429,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN Depth-to-Space
+//!DESC ArtCNN C4F8 (Depth-to-Space)
 //!HOOK LUMA
 //!BIND LUMA
 //!BIND conv2d_6_tf
