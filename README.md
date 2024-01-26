@@ -14,6 +14,7 @@ The main variant of the shader is offered in 2 sizes:
 Some variants of the smaller C4F8 model are also offered:
 - `ArtCNN_C4F8_Gamma.glsl`: Trained with images downsampled in gamma-light. Use this if you suspect the content has been downsampled in gamma-light.
 - `ArtCNN_C4F8_Hermite.glsl`: Trained with images downsampled with hermite instead of box. Use this if the content is naturally a bit blurry.
+- `ArtCNN_C4F8_DIV2K.glsl`: Trained with the DIV2K dataset, this variant is probably better for live-action content.
 
 ## Model Architecture
 ![Model Architecture](./Images/model_architecture.png "Model Architecture")
