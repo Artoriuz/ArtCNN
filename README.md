@@ -3,6 +3,8 @@
 ## Overview
 These are Super-Resolution Convolutional Neural Networks as GLSL shaders for mpv. They implement a simple feed-forward architecture with one long-skip connection and a pixel-shuffle layer to get the HR image.
 
+![Model Architecture](./Images/model_architecture.png "Model Architecture")
+
 These shaders are trained on the Manga109 dataset using the Adam optimiser with a learning rate of 1e-4 and the L1/MAE loss function. The high-resolution images are downscaled in linear-light with a box filter, and they're also split into small 64x64 patches for performance and memory reasons.
 
 You can check the `ArtCNN_Training.ipynb` Colab Notebook for details.
@@ -18,11 +20,8 @@ The smaller C4F8 model is also offered in the following sub-variants:
 
 When in doubt of which variant to use, start with `ArtCNN_C4F8.glsl` to see if your system can handle it and go up from there.
 
-## Model Architecture
-![Model Architecture](./Images/model_architecture.png "Model Architecture")
-
 ## Example
-![Example](./Images/example.gif "Example")
+![Example](./Images/example.png "Example")
 
 ## Instructions
 Add something like this to your mpv config:
