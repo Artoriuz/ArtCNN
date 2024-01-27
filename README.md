@@ -17,7 +17,8 @@ you should only consider using it if you have a good GPU.
 nasty aliasing sometimes.
 
 A few other variants are also offered, these are meant to cover specific needs or edge-case scenarios:
-- `ArtCNN_C4F16_JPEG.glsl`: Trained with JPEG LR images. Use this when your source has visible compression artifacts (the model knows how to clean/ignore them to some extent).
+- `ArtCNN_C4F16_Denoiser.glsl`: Trained with JPEG LR images. Use this when your source has visible compression artifacts (the model knows how to clean/ignore them to some extent).
+- `ArtCNN_C4F16_Sharpener.glsl`: Trained with images downsampled with polar Hermite. Use this when you want to sharpen the source (useful for blurry content).
 - `ArtCNN_C4F16_Gamma.glsl`: Trained with images downsampled in gamma-light. Use this if you suspect the content has been downsampled in gamma-light.
 
 When in doubt of which variant to use, start with `ArtCNN_C4F16.glsl` to see if your system can handle it and go up or down from there.
