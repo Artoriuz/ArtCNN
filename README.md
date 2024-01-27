@@ -17,7 +17,6 @@ The main variant of the shader is offered in 3 sizes:
 A few other variants are also offered, these are meant to cover specific needs or edge-case scenarios:
 - `ArtCNN_C4F16_JPEG.glsl`: Trained with JPEG LR images. Use this when your source has visible compression artifacts (the model knows how to clean/ignore them to some extent).
 - `ArtCNN_C4F8_Gamma.glsl`: Trained with images downsampled in gamma-light. Use this if you suspect the content has been downsampled in gamma-light.
-- `ArtCNN_C4F8_DIV2K.glsl`: Trained with the DIV2K dataset, this variant is probably better for live-action content.
 
 When in doubt of which variant to use, start with `ArtCNN_C4F8.glsl` to see if your system can handle it and go up from there.
 
