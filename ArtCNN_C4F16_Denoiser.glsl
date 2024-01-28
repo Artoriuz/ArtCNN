@@ -1292,21 +1292,30 @@ vec4 hook() {
     return result;
 }
 
-//!DESC C4F16 Denoiser (Depth-to-Space)
+//!PARAM ar_strength
+//!TYPE float
+//!MINIMUM 0.0
+//!MAXIMUM 1.0
+0.35
+
+//!DESC ArtCNN C4F16 Denoiser (Depth-to-Space)
 //!HOOK LUMA
 //!BIND LUMA
 //!BIND conv2d_6_tf
 //!WIDTH LUMA.w 2 *
 //!HEIGHT LUMA.h 2 *
 //!COMPONENTS 4
-//!WHEN OUTPUT.w LUMA.w / 1.0 > OUTPUT.h LUMA.h / 1.0 > *
+//!WHEN OUTPUT.w LUMA.w / 1.3 > OUTPUT.h LUMA.h / 1.3 > *
+
+#define ANTIRING 1
+
 vec4 hook() {
     vec4 output_pix = vec4(0.0, 0.0, 0.0, 1.0);
     vec2 f0 = fract(conv2d_6_tf_pos * conv2d_6_tf_size);
     ivec2 i0 = ivec2(f0 * vec2(2.0));
     output_pix.x = conv2d_6_tf_tex((vec2(0.5) - f0) * conv2d_6_tf_pt + conv2d_6_tf_pos)[i0.y * 2 + i0.x];
 
-    float ar_strength = 0.35;
+#if (ANTIRING == 1)
     vec2 pp = LUMA_pos * LUMA_size - vec2(0.5);
     vec2 fp = floor(pp);
 
@@ -1322,6 +1331,8 @@ vec4 hook() {
     float luma_min = min(min(min(luma_pixels[0], luma_pixels[1]), luma_pixels[2]), luma_pixels[3]);
     float luma_max = max(max(max(luma_pixels[0], luma_pixels[1]), luma_pixels[2]), luma_pixels[3]);
 
-    output_pix.x = clamp(mix(output_pix.x, clamp(output_pix.x, luma_min, luma_max), ar_strength), 0.0, 1.0);
-    return output_pix;
+    output_pix.x = mix(output_pix.x, clamp(output_pix.x, luma_min, luma_max), ar_strength);
+#endif
+
+    return clamp(output_pix, 0.0, 1.0);
 }
