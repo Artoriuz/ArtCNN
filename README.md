@@ -17,9 +17,9 @@ you should only consider using it if you have a good GPU.
 nasty aliasing sometimes.
 
 A few other variants are also offered, these are meant to cover specific needs or edge-case scenarios:
-- `_Denoiser` suffix: Trained with JPEG LR images. Use this when your source has visible compression artifacts (the model knows how to clean/ignore them to some extent).
-- `_Sharpener` suffix: Trained with images downsampled with polar Hermite. Use this when you want to sharpen the source (useful for blurry content).
-- `_LL` suffix: Ttrained with images downsampled in linear light. Use this if you suspect the content has been downsampled in linear light.
+- `_Denoiser`: Trained with JPEG LR images. Use this when your source has visible compression artifacts (the model knows how to clean/ignore them to some extent).
+- `_Sharpener`: Trained with images downsampled with polar Hermite. Use this when you want to sharpen the source (useful for blurry content).
+- `_LL`: Trained with images downsampled in linear light. Use this if you suspect the content has been downsampled in linear light.
 
 When in doubt of which variant to use, start with `ArtCNN_C4F16.glsl` to see if your system can handle it and go up or down from there.
 
