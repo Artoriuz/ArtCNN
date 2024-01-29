@@ -18,6 +18,8 @@ A few other variants are also offered, these are meant to cover specific needs o
 
 When in doubt of which variant to use, start with `ArtCNN_C4F16.glsl` to see if your system can handle it and go up or down from there.
 
+If you plan on using ArtCNN for fractional scaling factors below 2x, it's recommended that you change the default `dscale` from `hermite` to a sharper option to avoid blurring the image.
+
 ## Technical Details
 The shaders are trained on the Manga109 dataset using the Adam optimiser with a learning rate of 1e-4 and the L1/MAE loss function. The high-resolution images are downsampled with a box filter, and they're also split into small 64x64 patches for performance and memory reasons.
 
