@@ -12,7 +12,8 @@ you should only consider using it if you have a good GPU.
 - `ArtCNN_C4F8.glsl`: This has 4 internal convolution layers with 8 filters each. This is the "small" variant of the shader. You should only use this for performance reasons.
 
 A few other variants are also offered, these are meant to cover specific needs or edge-case scenarios:
-- `ArtCNN_C4F16_Denoiser.glsl`: Trained with JPEG LR images. Use this when your source has visible compression artifacts (the model knows how to clean/ignore them to some extent).
+- `ArtCNN_C4F16_D2.glsl`: Trained with JPEG LR images that have been moderately compressed. Use this when your objective is to get rid of artifacts.
+- `ArtCNN_C4F16_D1.glsl`: Trained with JPEG LR images that have been lightly compressed. Use this for normal lossy web content, it preserves more fine detail than the D2 variant.
 - `ArtCNN_C4F16_LL.glsl`: Trained with images downsampled in linear light. Use this if you suspect the content has been downsampled in linear light.
 
 When in doubt of which variant to use, start with `ArtCNN_C4F16.glsl` to see if your system can handle it and go up or down from there.
