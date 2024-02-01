@@ -1298,7 +1298,7 @@ vec4 hook() {
 //!MAXIMUM 1.0
 0.35
 
-//!DESC ArtCNN C4F16 DS (Depth-to-Space)
+//!DESC ArtCNN C4F16 DS (Pixel-Shuffle)
 //!HOOK LUMA
 //!BIND LUMA
 //!BIND conv2d_6_tf
