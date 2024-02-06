@@ -4312,12 +4312,6 @@ vec4 hook() {
     return result;
 }
 
-//!PARAM ar_strength
-//!TYPE float
-//!MINIMUM 0.0
-//!MAXIMUM 1.0
-0.25
-
 //!DESC ArtCNN C4F32 DS (Pixel-Shuffle)
 //!HOOK LUMA
 //!BIND LUMA
@@ -4332,22 +4326,5 @@ vec4 hook() {
     vec2 f0 = fract(conv2d_6_tf_pos * conv2d_6_tf_size);
     ivec2 i0 = ivec2(f0 * vec2(2.0));
     output_pix.x = conv2d_6_tf_tex((vec2(0.5) - f0) * conv2d_6_tf_pt + conv2d_6_tf_pos)[i0.y * 2 + i0.x];
-
-    vec2 pp = LUMA_pos * LUMA_size - vec2(0.5);
-    vec2 fp = floor(pp);
-
-    vec2 pix_idx[4] = {{0.5, 0.5}, {1.5, 0.5},
-                       {0.5, 1.5}, {1.5, 1.5}};
-
-    float luma_pixels[4];
-
-    for (int i = 0; i < 4; i++) {
-        luma_pixels[i] = LUMA_tex(vec2((fp + pix_idx[i]) * LUMA_pt)).x;
-    }
-
-    float luma_min = min(min(min(luma_pixels[0], luma_pixels[1]), luma_pixels[2]), luma_pixels[3]);
-    float luma_max = max(max(max(luma_pixels[0], luma_pixels[1]), luma_pixels[2]), luma_pixels[3]);
-
-    output_pix.x = mix(output_pix.x, clamp(output_pix.x, luma_min, luma_max), ar_strength);
     return clamp(output_pix, 0.0, 1.0);
 }

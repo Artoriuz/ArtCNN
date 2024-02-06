@@ -29,11 +29,5 @@ vo=gpu-next
 glsl-shader="path/to/shader/ArtCNN_C4F16.glsl"
 ```
 
-## Parameters
-You can set the following parameters:
-- `ar_strength`: Controls the intensity limits of each HR pixel based on the LR pixels that surround it.
-
-On `vo=gpu-next`, you can set these settings with `--glsl-shader-opts=ar_strength=value`.
-
 ## Example
 ![Example](./Images/example.png "Example")
