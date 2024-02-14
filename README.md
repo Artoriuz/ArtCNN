@@ -5,7 +5,7 @@ These are Super-Resolution Convolutional Neural Networks as GLSL shaders for mpv
 
 ![Model Architecture](./Images/model_architecture.png "Model Architecture")
 
-The main variant of the shader is offered in 2 sizes, these are meant to "respect" the source and generate fairly neutral outputs:
+The main variant of the shader is offered in 3 sizes, these are meant to "respect" the source and generate fairly neutral outputs:
 - `C4F32`: This has 4 internal convolution layers with 32 filters each. This is the "big" variant of the shader. This is the best version of the shader for very high quality content, but it is a bit resource-intensive for real-time video playback and you should only consider using it if you have a good GPU.
 - `C4F16`: This has 4 internal convolution layers with 16 filters each. This is the "normal" variant of the shader. Most semi-recent discrete GPUs should be able to handle this.
 - `C4F8`: This has 4 internal convolution layers with 8 filters each. This is the "small" variant of the shader. You should only use this for performance or power consumption reasons.
@@ -16,7 +16,7 @@ A few other variants are also offered, these are meant to cover specific needs:
 - `DN`: Trained with JPEG LR images that have been moderately compressed. Use this to clean compression artifacts at the expense of some fine-detail.
 - `DS`: Trained with JPEG LR images that have been moderately compressed and downsampled with Hermite. This provides mild artifact cleaning and sharpening, which might work well for low quality web sources.
 
-If you plan on using ArtCNN for fractional scaling factors below 2x, it's recommended that you change the default `dscale` from `hermite` to a sharper option to avoid blurring the image.
+If you plan on using ArtCNN for fractional scaling factors below 2x, the `SH` and `DS` variants might work better with mpv's default `dscale` (`hermite`).
 
 ## Technical Details
 The shaders are trained on the Manga109 dataset using the Adam optimiser with a learning rate of 1e-4 and the L1/MAE loss function. The high-resolution images are downsampled with a box filter, and they're also split into small 64x64 patches for performance and memory reasons.
