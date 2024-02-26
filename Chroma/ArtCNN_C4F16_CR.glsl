@@ -1275,10 +1275,9 @@ vec4 hook() {
 //!HEIGHT NATIVE.h
 //!COMPONENTS 4
 vec4 hook() {
-    vec4 output_pix = vec4(0.0, 0.0, 0.0, 1.0);
-    output_pix.x = NATIVE_texOff(0.0).x;
-    output_pix.y = conv2d_6_tf_texOff(0.0).x;
-    output_pix.z = conv2d_6_tf_texOff(0.0).y;
-    output_pix.w = NATIVE_texOff(0.0).w;
+    vec4 output_pix = NATIVE_texOff(0.0);
+    vec4 prediction = conv2d_6_tf_texOff(0.0);
+    output_pix.y = prediction.x;
+    output_pix.z = prediction.y;
     return clamp(output_pix, 0.0, 1.0);
 }
