@@ -15,12 +15,13 @@ A few other variants are also offered, these are meant to cover specific needs:
 - `SH`: Trained with LR images that have been downsampled with Hermite. Use this if you want some mild sharpening.
 - `DN`: Trained with JPEG LR images that have been moderately compressed. Use this to clean compression artifacts at the expense of some fine-detail.
 - `DS`: Trained with JPEG LR images that have been moderately compressed and downsampled with Hermite. This provides mild artifact cleaning and sharpening, which might work well for low quality web sources.
-- `CR`: Trained with JPEG images that have been moderately compressed and chroma subsampled. This is a 1x YCbCr model trained to restore chroma. It should be used alongside `cscale=bilinear`.
 - `DIV2K`: Trained on the DIV2K dataset. This variant should be a little better on live-action content.
 
-If you plan on using ArtCNN for fractional scaling factors below 2x, the `SH` and `DS` variants might work better with mpv's default downscaling filter (`hermite`).
+If you plan on using ArtCNN for fractional scaling factors below 2x, the `SH` and `DS` variants might work better with mpv's default downscaling filter `dscale=hermite`.
 
-The RGB variants are a bit experimental and currently they simply reuse the luma models to upscale the channels separately. This works relatively well but it's very slow.
+Chroma variants are 1x YCbCr models in order for them to extract information from luma and not have to deal with chromaloc. They should be used alongside `cscale=bilinear`.
+
+RGB variants are a bit experimental and currently they simply reuse the luma models to upscale the channels separately. This works relatively well but it's very slow.
 
 ## Technical Details
 The shaders are trained on the Manga109 dataset using the Adam optimiser with a learning rate of 1e-4 and the L1/MAE loss function. The high-resolution images are downsampled with a box filter, and they're also split into small 64x64 patches for performance and memory reasons.
