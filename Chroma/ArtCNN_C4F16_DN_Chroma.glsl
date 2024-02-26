@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-//!DESC ArtCNN C4F16 CR (Conv-0)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf
@@ -42,7 +42,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-0)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf1
@@ -64,7 +64,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-0)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf2
@@ -86,7 +86,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-0)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf3
@@ -108,7 +108,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-1-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-1-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_tf
 //!BIND conv2d_tf1
@@ -163,7 +163,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-1-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-1-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_tf
 //!BIND conv2d_tf1
@@ -218,7 +218,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-1-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-1-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_tf
 //!BIND conv2d_tf1
@@ -273,7 +273,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-1-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-1-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_tf
 //!BIND conv2d_tf1
@@ -328,7 +328,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-2-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-2-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_1_tf
 //!BIND conv2d_1_tf1
@@ -383,7 +383,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-2-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-2-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_1_tf
 //!BIND conv2d_1_tf1
@@ -438,7 +438,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-2-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-2-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_1_tf
 //!BIND conv2d_1_tf1
@@ -493,7 +493,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-2-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-2-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_1_tf
 //!BIND conv2d_1_tf1
@@ -548,7 +548,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-3-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-3-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_2_tf
 //!BIND conv2d_2_tf1
@@ -603,7 +603,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-3-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-3-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_2_tf
 //!BIND conv2d_2_tf1
@@ -658,7 +658,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-3-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-3-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_2_tf
 //!BIND conv2d_2_tf1
@@ -713,7 +713,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-3-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-3-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_2_tf
 //!BIND conv2d_2_tf1
@@ -768,7 +768,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-4-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-4-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_3_tf
 //!BIND conv2d_3_tf1
@@ -823,7 +823,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-4-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-4-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_3_tf
 //!BIND conv2d_3_tf1
@@ -878,7 +878,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-4-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-4-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_3_tf
 //!BIND conv2d_3_tf1
@@ -933,7 +933,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-4-ReLU)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-4-ReLU)
 //!HOOK NATIVE
 //!BIND conv2d_3_tf
 //!BIND conv2d_3_tf1
@@ -988,7 +988,7 @@ vec4 hook() {
     return max(result, vec4(0.0));
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-5)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-5)
 //!HOOK NATIVE
 //!BIND conv2d_4_tf
 //!BIND conv2d_4_tf1
@@ -1043,7 +1043,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-5)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-5)
 //!HOOK NATIVE
 //!BIND conv2d_4_tf
 //!BIND conv2d_4_tf1
@@ -1098,7 +1098,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-5)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-5)
 //!HOOK NATIVE
 //!BIND conv2d_4_tf
 //!BIND conv2d_4_tf1
@@ -1153,7 +1153,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 CR (Conv-5)
+//!DESC ArtCNN C4F16 DN Chroma (Conv-5)
 //!HOOK NATIVE
 //!BIND conv2d_4_tf
 //!BIND conv2d_4_tf1
@@ -1208,7 +1208,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 CR (Long-Skip-Conv-6)
+//!DESC ArtCNN C4F16 DN Chroma (Long-Skip-Conv-6)
 //!HOOK NATIVE
 //!BIND conv2d_5_tf
 //!BIND conv2d_tf
@@ -1267,7 +1267,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 CR (Merging)
+//!DESC ArtCNN C4F16 DN Chroma (Merging)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!BIND conv2d_6_tf
