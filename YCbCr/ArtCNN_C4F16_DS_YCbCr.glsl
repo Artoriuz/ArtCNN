@@ -1415,63 +1415,18 @@ vec4 hook() {
 //!DESC ArtCNN C4F16 DS YCbCr (Pixel-Shuffle)
 //!HOOK NATIVE
 //!BIND conv2d_6_tf
-//!SAVE depth_to_space_tf
-//!WIDTH NATIVE.w 2 *
-//!HEIGHT NATIVE.h 2 *
-//!COMPONENTS 4
-//!WHEN OUTPUT.w NATIVE.w / 1.3 > OUTPUT.h NATIVE.h / 1.3 > *
-vec4 hook() {
-    vec2 f0 = fract(conv2d_6_tf_pos * conv2d_6_tf_size);
-    ivec2 i0 = ivec2(f0 * vec2(2.0));
-    float c0 = conv2d_6_tf_tex((vec2(0.5) - f0) * conv2d_6_tf_pt + conv2d_6_tf_pos)[i0.y * 2 + i0.x];
-    return vec4(c0, 0.0, 0.0, 0.0);
-}
-
-//!DESC ArtCNN C4F16 DS YCbCr (Pixel-Shuffle)
-//!HOOK NATIVE
 //!BIND conv2d_7_tf
-//!SAVE depth_to_space_1_tf
-//!WIDTH NATIVE.w 2 *
-//!HEIGHT NATIVE.h 2 *
-//!COMPONENTS 4
-//!WHEN OUTPUT.w NATIVE.w / 1.3 > OUTPUT.h NATIVE.h / 1.3 > *
-vec4 hook() {
-    vec2 f0 = fract(conv2d_7_tf_pos * conv2d_7_tf_size);
-    ivec2 i0 = ivec2(f0 * vec2(2.0));
-    float c0 = conv2d_7_tf_tex((vec2(0.5) - f0) * conv2d_7_tf_pt + conv2d_7_tf_pos)[i0.y * 2 + i0.x];
-    return vec4(c0, 0.0, 0.0, 0.0);
-}
-
-//!DESC ArtCNN C4F16 DS YCbCr (Pixel-Shuffle)
-//!HOOK NATIVE
 //!BIND conv2d_8_tf
-//!SAVE depth_to_space_2_tf
-//!WIDTH NATIVE.w 2 *
-//!HEIGHT NATIVE.h 2 *
-//!COMPONENTS 4
-//!WHEN OUTPUT.w NATIVE.w / 1.3 > OUTPUT.h NATIVE.h / 1.3 > *
-vec4 hook() {
-    vec2 f0 = fract(conv2d_8_tf_pos * conv2d_8_tf_size);
-    ivec2 i0 = ivec2(f0 * vec2(2.0));
-    float c0 = conv2d_8_tf_tex((vec2(0.5) - f0) * conv2d_8_tf_pt + conv2d_8_tf_pos)[i0.y * 2 + i0.x];
-    return vec4(c0, 0.0, 0.0, 0.0);
-}
-
-//!DESC ArtCNN C4F16 DS YCbCr (Merging)
-//!HOOK NATIVE
-//!BIND NATIVE
-//!BIND depth_to_space_tf
-//!BIND depth_to_space_1_tf
-//!BIND depth_to_space_2_tf
-//!BIND conv2d_6_tf
 //!WIDTH NATIVE.w 2 *
 //!HEIGHT NATIVE.h 2 *
 //!COMPONENTS 4
 //!WHEN OUTPUT.w NATIVE.w / 1.3 > OUTPUT.h NATIVE.h / 1.3 > *
 vec4 hook() {
     vec4 output_pix = vec4(0.0, 0.0, 0.0, 1.0);
-    output_pix.x = depth_to_space_tf_texOff(0.0).x;
-    output_pix.y = depth_to_space_1_tf_texOff(0.0).x;
-    output_pix.z = depth_to_space_2_tf_texOff(0.0).x;
+    vec2 f0 = fract(conv2d_6_tf_pos * conv2d_6_tf_size);
+    ivec2 i0 = ivec2(f0 * vec2(2.0));
+    output_pix.x = conv2d_6_tf_tex((vec2(0.5) - f0) * conv2d_6_tf_pt + conv2d_6_tf_pos)[i0.y * 2 + i0.x];
+    output_pix.y = conv2d_7_tf_tex((vec2(0.5) - f0) * conv2d_7_tf_pt + conv2d_7_tf_pos)[i0.y * 2 + i0.x];
+    output_pix.z = conv2d_8_tf_tex((vec2(0.5) - f0) * conv2d_8_tf_pt + conv2d_8_tf_pos)[i0.y * 2 + i0.x];
     return clamp(output_pix, 0.0, 1.0);
 }
