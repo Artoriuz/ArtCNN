@@ -21,7 +21,7 @@ If you plan on using ArtCNN for fractional scaling factors below 2x, the `SH` an
 
 Chroma variants are 1x YCbCr models in order for them to extract information from luma and not have to deal with chromaloc. They should be used alongside `cscale=bilinear`.
 
-RGB variants are a bit experimental and currently they simply reuse the luma models to upscale the channels separately. This works relatively well but it's very slow.
+YCbCr variants are 2x YCbCr models that expect chroma to have been upscaled with `cscale=bilinear`. You should not use them on 4:4:4 content as they're trained to learn how to reconstruct chroma.
 
 ## Technical Details
 The shaders are trained on the Manga109 dataset using the Adam optimiser with a learning rate of 1e-4 and the L1/MAE loss function. The dataset is split into smaller 64x64 patches and downsampled with the `box` filter.
