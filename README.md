@@ -24,7 +24,7 @@ Chroma variants are 1x YCbCr models in order for them to extract information fro
 RGB variants are a bit experimental and currently they simply reuse the luma models to upscale the channels separately. This works relatively well but it's very slow.
 
 ## Technical Details
-The shaders are trained on the Manga109 dataset using the Adam optimiser with a learning rate of 1e-4 and the L1/MAE loss function. The high-resolution images are downsampled with a box filter, and they're also split into small 64x64 patches for performance and memory reasons.
+The shaders are trained on the Manga109 dataset using the Adam optimiser with a learning rate of 1e-4 and the L1/MAE loss function. The dataset is split into smaller 64x64 patches and downsampled with the `box` filter.
 
 You can check the `ArtCNN_Training.ipynb` Colab Notebook for details.
 
