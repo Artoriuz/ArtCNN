@@ -1292,7 +1292,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 DS YCbCr (Conv-tmp)
+//!DESC ArtCNN C4F16 DS YCbCr (Long-Skip-Conv-6)
 //!HOOK NATIVE
 //!BIND conv2d_5_tf
 //!BIND conv2d_tf
@@ -1352,7 +1352,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F16 DS YCbCr (Conv-tmp)
+//!DESC ArtCNN C4F16 DS YCbCr (Long-Skip-Conv-6)
 //!HOOK NATIVE
 //!BIND conv2d_5_tf
 //!BIND conv2d_tf
