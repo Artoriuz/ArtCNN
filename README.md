@@ -13,15 +13,15 @@ The main variant of the shader is offered in 3 sizes, these are meant to "respec
 A few other variants are also offered, these are meant to cover specific needs:
 - `LL`: Trained with images downsampled in linear light. Use this if you suspect the content has been downsampled in linear light.
 - `SH`: Trained with LR images that have been downsampled with Hermite. Use this if you want some mild sharpening.
-- `DN`: Trained with JPEG LR images that have been moderately compressed. Use this to clean compression artifacts at the expense of some fine-detail.
-- `DS`: Trained with JPEG LR images that have been moderately compressed and downsampled with Hermite. This provides mild artifact cleaning and sharpening, which might work well for low quality web sources.
+- `DN`: Trained with LR images that have been moderately compressed. Use this to clean compression artifacts at the expense of some fine-detail.
+- `DS`: Trained with LR images that have been moderately compressed and downsampled with Hermite. This provides mild artifact cleaning and sharpening, which might work well for low quality web sources.
 - `DIV2K`: Trained on the DIV2K dataset. This variant should be a little better on live-action content.
 
-If you plan on using ArtCNN for fractional scaling factors below 2x, the `SH` and `DS` variants might work better with mpv's default downscaling filter `dscale=hermite`.
+If you plan on using ArtCNN for fractional scaling factors below 2x, the `SH` and `DS` variants might work better with mpv's default downscaling filter `dscale=hermite`. For the other variants, it's recommended that you change the downscaling filter to something sharper to avoid blurrying the image.
 
-Chroma variants are 1x YCbCr models in order for them to extract information from luma and not have to deal with chromaloc. They should be used alongside `cscale=bilinear`.
+Chroma variants are 1x YCbCr models in order for them to extract information from luma and not have to deal with chromaloc. They should be used alongside `cscale=bilinear`. The `DN` and `DS` variants should generally work well on most lossy video content, you should only consider the other variants on very high quality sources.
 
-YCbCr variants are 2x YCbCr models that expect chroma to have been upscaled with `cscale=bilinear`. You should not use them on 4:4:4 content as they're trained to learn how to reconstruct chroma.
+YCbCr variants are 2x YCbCr models that expect chroma to have been upscaled with `cscale=bilinear`. You should not use them on 4:4:4 content as they're also trained to learn how to reconstruct chroma.
 
 ## Technical Details
 The shaders are trained on the Manga109 dataset using the Adam optimiser with a learning rate of 1e-4 and the L1/MAE loss function. The dataset is split into smaller 64x64 patches and downsampled with the `box` filter.
