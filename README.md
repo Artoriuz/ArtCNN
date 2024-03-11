@@ -39,5 +39,7 @@ vo=gpu-next
 glsl-shader="path/to/shader/ArtCNN_C4F16.glsl"
 ```
 
-## Example
-![Example](./Images/example.png "Example")
+## Demo
+![Example](./Images/example.webp "Example")
+
+The demo above was done using `ArtCNN_C4F32_DN_YCbCr`, upscaling from FHD to UHD (2x).
