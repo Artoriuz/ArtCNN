@@ -19,14 +19,16 @@ A few other variants are also offered, these are meant to cover specific needs:
 
 If you plan on using ArtCNN for fractional scaling factors below 2x, the `SH` and `DS` variants might work better with mpv's default downscaling filter `dscale=hermite`. For the other variants, it's recommended that you change the downscaling filter to something sharper to avoid blurrying the image.
 
-`Chroma` variants are 1x YCbCr models in order for them to extract information from luma and not have to deal with chromaloc. They should be used alongside `cscale=bilinear`. The `DN` and `DS` variants should generally work well on most lossy video content, you should only consider the other variants on very high quality sources.
+`Chroma` variants are 1x YCbCr models in order for them to extract information from luma and not have to deal with chromaloc. They should be used alongside `cscale=bilinear`. The `DN` and `DS` variants should generally work well on most lossy video content, you should only consider the other variants on very high quality sources. You should not use this alongside luma prescalers.
 
-`YCbCr` variants are 2x YCbCr models that expect chroma to have been upscaled with `cscale=bilinear`. You should not use them on 4:4:4 content as they're also trained to learn how to reconstruct chroma.
+`YCbCr` variants are 2x YCbCr models that expect chroma to have been upscaled with `cscale=bilinear`. This is what you should generally use if you want to reconstruct both luma and chroma with ArtCNN. Do **not** use these on 4:4:4 content.
 
-`RGB` variants are 2x RGB models. These are **not** trained to learn how to reconstruct chroma, they simply double the image.
+`RGB` variants are 2x RGB models. These are **not** trained to learn how to reconstruct chroma, they simply double the image. These are the preferred models for RGB or 4:4:4 content in general.
 
 ## Technical Details
 The shaders are trained on the Manga109 dataset using the Adam optimiser with a learning rate of 1e-4 and the L1/MAE loss function. The dataset is split into smaller 64x64 patches and downsampled with the `box` filter.
+
+![Manga109](./Images/manga109.png "Manga109")
 
 You can check the `ArtCNN_Training.ipynb` Colab Notebook for details.
 
