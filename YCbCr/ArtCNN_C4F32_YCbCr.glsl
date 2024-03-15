@@ -20,7 +20,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-//!DESC ArtCNN C4F32  YCbCr (Conv-0)
+//!DESC ArtCNN C4F32 YCbCr (Doubling Chroma)
+//!HOOK CHROMA
+//!BIND CHROMA
+//!WIDTH CHROMA.w 2.0 *
+//!HEIGHT CHROMA.h 2.0 *
+//!OFFSET ALIGN
+//!WHEN OUTPUT.w CHROMA.w / 2.6 > OUTPUT.h CHROMA.h / 2.6 > *
+vec4 hook() {
+    return CHROMA_texOff(0.0);
+}
+
+//!DESC ArtCNN C4F32 YCbCr (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf
@@ -43,7 +54,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F32  YCbCr (Conv-0)
+//!DESC ArtCNN C4F32 YCbCr (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf1
@@ -66,7 +77,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F32  YCbCr (Conv-0)
+//!DESC ArtCNN C4F32 YCbCr (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf2
@@ -89,7 +100,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F32  YCbCr (Conv-0)
+//!DESC ArtCNN C4F32 YCbCr (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf3
@@ -112,7 +123,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F32  YCbCr (Conv-0)
+//!DESC ArtCNN C4F32 YCbCr (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf4
@@ -135,7 +146,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F32  YCbCr (Conv-0)
+//!DESC ArtCNN C4F32 YCbCr (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf5
@@ -158,7 +169,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F32  YCbCr (Conv-0)
+//!DESC ArtCNN C4F32 YCbCr (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf6
@@ -181,7 +192,7 @@ vec4 hook() {
     return result;
 }
 
-//!DESC ArtCNN C4F32  YCbCr (Conv-0)
+//!DESC ArtCNN C4F32 YCbCr (Conv-0)
 //!HOOK NATIVE
 //!BIND NATIVE
 //!SAVE conv2d_tf7
