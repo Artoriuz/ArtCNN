@@ -17,6 +17,8 @@ A few other variants are also offered, these are meant to cover specific needs:
 - `DS`: Trained with LR images that have been moderately compressed and downsampled with Hermite. This provides mild artifact cleaning and sharpening, which might work well for low quality web sources.
 - `DIV2K`: Trained on the DIV2K dataset. This variant should be a little better on live-action content.
 
+The baseline models in the root directory ara luma prescalers. They double luma without touching chroma at all.
+
 `Chroma` variants are trained to learn how to reconstruct chroma using information from both chroma and luma. The `DN` and `DS` variants should generally work well on most lossy video content, you should only consider the other variants on very high quality sources. You should **not** use this alongside luma prescalers.
 
 `YCbCr` variants are 2x YCbCr models that double the image and reconstruct chroma simultaneously. This is what you should generally use if you want to use ArtCNN for both luma and chroma. Do **not** use these on 4:4:4 content.
