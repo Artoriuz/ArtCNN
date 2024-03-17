@@ -15,7 +15,6 @@ A few other variants are also offered, these are meant to cover specific needs:
 - `SH`: Trained with LR images that have been downsampled with Hermite. Use this if you want some mild sharpening.
 - `DN`: Trained with LR images that have been moderately compressed. Use this to clean compression artifacts at the expense of some fine-detail.
 - `DS`: Trained with LR images that have been moderately compressed and downsampled with Hermite. This provides mild artifact cleaning and sharpening, which might work well for low quality web sources.
-- `DIV2K`: Trained on the DIV2K dataset. This variant should be a little better on live-action content.
 
 The baseline models in the root directory ara luma prescalers. They double luma without touching chroma at all.
 
