@@ -22,8 +22,6 @@ The baseline models in the root directory ara luma prescalers. They double luma 
 
 `YCbCr` variants are 2x YCbCr models that double the image and reconstruct chroma simultaneously. This is what you should generally use if you want to use ArtCNN for both luma and chroma. Do **not** use these on 4:4:4 content.
 
-`RGB` variants are normal 2x RGB models. These are **not** trained to learn how to reconstruct chroma, they simply double the image. These are the preferred models for RGB or 4:4:4 content in general.
-
 If you plan on using ArtCNN for fractional scaling factors below 2x, the `SH` and `DS` variants might work better with mpv's default downscaling filter `dscale=hermite`. For the other variants, it's recommended that you change the downscaling filter to something sharper to avoid blurrying the image.
 
 ## Technical Details
