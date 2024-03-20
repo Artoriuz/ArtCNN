@@ -11,7 +11,6 @@ The main variant of the shader is offered in 3 sizes, these are meant to "respec
 - `C4F8`: This has 4 internal convolution layers with 8 filters each. This is the "small" variant of the shader. You should only use this for performance or power consumption reasons.
 
 A few other variants are also offered, these are meant to cover specific needs:
-- `LL`: Trained with images downsampled in linear light. Use this if you suspect the content has been downsampled in linear light.
 - `SH`: Trained with LR images that have been downsampled with Hermite. Use this if you want some mild sharpening.
 - `DN`: Trained with LR images that have been moderately compressed. Use this to clean compression artifacts at the expense of some fine-detail.
 - `DS`: Trained with LR images that have been moderately compressed and downsampled with Hermite. This provides mild artifact cleaning and sharpening, which might work well for low quality web sources.
