@@ -15,7 +15,7 @@ A few other variants are also offered, these are meant to cover specific needs:
 - `DN`: Trained with LR images that have been moderately compressed. Use this to clean compression artifacts at the expense of some fine-detail.
 - `DS`: Trained with LR images that have been moderately compressed and downsampled with Hermite. This provides mild artifact cleaning and sharpening, which might work well for low quality web sources.
 
-The baseline models in the root directory ara luma prescalers. They double luma without touching chroma at all.
+The baseline models in the root directory are luma prescalers. They double luma without touching chroma at all.
 
 `Chroma` variants are trained to learn how to reconstruct chroma using information from both chroma and luma. You should **not** use this alongside luma prescalers as it's trained assuming a 2x scaling factor for chroma.
 
