@@ -40,3 +40,6 @@ The models were trained using Keras 3 with its JAX backend.
 | lanczos             | 1.53E-02 | 28.3051 | 0.9497 |  0.9962 |   |  0.3216 |   0.2503 |   0.3844 |      0.6945 |   | 0.4127 |
 | polar_lanczossharp  | 1.61E-02 | 27.8741 | 0.9448 |  0.9949 |   |  0.2635 |   0.2082 |   0.3101 |      0.5760 |   | 0.3395 |
 | bilinear            | 2.00E-02 | 25.7442 | 0.9245 |  0.9889 |   |  0.0000 |   0.0000 |   0.0000 |      0.0000 |   | 0.0000 |
+
+## Example
+![Example](./Images/example.gif "Example")
