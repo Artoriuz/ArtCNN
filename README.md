@@ -10,7 +10,7 @@ The main variant of the model is offered in 3 sizes, these are meant to "respect
 - `C4F32`: This has 4 internal convolution layers with 32 filters each. You need a relatively decent GPU to run this well.
 - `C4F16`: This has 4 internal convolution layers with 16 filters each. You should be able to run this on most modern GPUs.
 
-`DS` variants are also offered. These are meant to denoise and sharpen, which is usually useful on bad sources.
+`DS` variants are also offered. These are trained to denoise and sharpen, which is usually useful for most web sources.
 
 The old `Chroma`, `YCbCr` and `RGB` variants can be found under the "Old" directory. These have not been updated to reflect the new software stack and training dataset yet.
 
@@ -26,6 +26,12 @@ The models were trained on an anime dataset containing screenshots from the foll
 The images were split into smaller 256x256 patches and downsampled with the box filter.
 The L1 loss function was used alongside the Adam optimiser.
 The models were trained using Keras 3 with its JAX backend.
+
+## Instructions
+Add something like this to your mpv config:
+```
+glsl-shader="path/to/shader/ArtCNN_C4F16_DS.glsl"
+```
 
 ## Example
 ![Example](./Images/example.png "Example")
