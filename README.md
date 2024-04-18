@@ -5,10 +5,11 @@ Super-Resolution Convolutional Neural Networks as GLSL shaders for mpv. ArtCNN i
 
 ![Model Architecture](./Images/model_architecture.png "Model Architecture")
 
-The model is offered in 3 sizes:
+The model is offered in 4 sizes:
 - `C4F64`: This has 4 internal convolution layers with 64 filters each. Probably too slow on most GPUs.
 - `C4F32`: This has 4 internal convolution layers with 32 filters each. You need a relatively decent GPU to run this well.
 - `C4F16`: This has 4 internal convolution layers with 16 filters each. You should be able to run this on most modern GPUs.
+- `C4F8`: This has 4 internal convolution layers with 8 filters each. You should probably only use this on very slow systems.
 
 Shaders without any suffixes are the base models. These are meant to respect the source and produce fairly neutral outputs.
 
