@@ -14,6 +14,7 @@ The model is offered in 4 sizes:
 Regarding the suffixes:
 - Shaders without any suffixes are the base models. These are meant to respect the source and produce fairly neutral outputs.
 - Shaders with the `DS` suffix are trained to denoise and sharpen, which is usually useful for most web sources.
+- Shaders with the `CMP` suffix are compute shaders. These are still experimental, but they're usually faster (specially on Vulkan).
 - The old `Chroma`, `YCbCr` and `RGB` variants can be found under the "Old" directory. These have not been updated to reflect the new software stack and training dataset yet.
 
 ## Technical Details
