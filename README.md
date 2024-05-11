@@ -27,7 +27,7 @@ The luma models are trained on an anime dataset containing screenshots from the 
 - Yuru Camp
 - SAO OS and Progressive
 
-The Chroma models are trained on DIV2K.
+The Chroma models are trained on DIV2K+Manga109.
 
 The images are split into smaller 256x256 patches and downsampled with the box filter.
 The L1 loss function is used alongside the Adam optimiser.
