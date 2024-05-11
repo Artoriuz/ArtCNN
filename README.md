@@ -1,7 +1,7 @@
 # ArtCNN
 
 ## Overview
-Super-Resolution Convolutional Neural Networks as GLSL shaders for mpv. ArtCNN implements a simple feed-forward architecture with one long-skip connection and a pixel-shuffle layer to get the HR image.
+Super-Resolution Convolutional Neural Networks optimised for anime. ArtCNN implements a simple feed-forward architecture with one long-skip connection and a pixel-shuffle layer to get the HR image.
 
 ![Model Architecture](./Images/model_architecture.png "Model Architecture")
 
@@ -26,6 +26,7 @@ The luma models are trained on an anime dataset containing screenshots from the 
 - Hibike Euphonium
 - Yuru Camp
 - SAO OS and Progressive
+- Evangelion: 3.0+1.0
 
 The Chroma models are trained on DIV2K+Manga109.
 
