@@ -15,10 +15,11 @@ Regarding the suffixes:
 - Shaders without any suffixes are the base models. These are meant to respect the source and produce fairly neutral outputs.
 - Shaders with the `DS` suffix are trained to denoise and sharpen, which is usually useful for most web sources.
 - Shaders with the `CMP` suffix are compute shaders. These are still experimental, but they're usually faster (specially on Vulkan).
-- The old `Chroma`, `YCbCr` and `RGB` variants can be found under the "Old" directory. These have not been updated to reflect the new software stack and training dataset yet.
+- Shaders with the `Chroma` suffix are chroma shaders. These are meant to be used on high-quality sources, and you should not use them alongside luma prescalers.
+- The old `YCbCr` and `RGB` variants can be found under the "Old" directory. These have not been updated to reflect the new software stack and training dataset yet.
 
 ## Technical Details
-The models were trained on an anime dataset containing screenshots from the following shows:
+The luma models are trained on an anime dataset containing screenshots from the following shows:
 - Violet Evergarden
 - Koe no Katachi
 - Kimi no Na Wa
@@ -26,9 +27,11 @@ The models were trained on an anime dataset containing screenshots from the foll
 - Yuru Camp
 - SAO OS and Progressive
 
-The images were split into smaller 256x256 patches and downsampled with the box filter.
-The L1 loss function was used alongside the Adam optimiser.
-The models were trained using Keras 3 and its JAX backend.
+The Chroma models are trained on DIV2K.
+
+The images are split into smaller 256x256 patches and downsampled with the box filter.
+The L1 loss function is used alongside the Adam optimiser.
+The models are trained using Keras 3 with its JAX backend.
 
 ## Instructions
 Add something like this to your mpv config:
