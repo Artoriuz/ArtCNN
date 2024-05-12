@@ -34,11 +34,18 @@ The images are split into smaller 256x256 patches and downsampled with the box f
 The L1 loss function is used alongside the Adam optimiser.
 The models are trained using Keras 3 with its JAX backend.
 
-## Instructions
+## mpv Instructions
 Add something like this to your mpv config:
 ```
 glsl-shader="path/to/shader/ArtCNN_C4F16_DS.glsl"
 ```
+
+## VapourSynth Instructions
+ArtCNN is natively supported by [vs-mlrt](https://github.com/AmusementClub/vs-mlrt/blob/master/scripts/vsmlrt.py).
+
+Alternatively, can also run the GLSL shaders with [vs-placebo](https://github.com/Lypheo/vs-placebo).
+
+The ONNX models should be generally preferred over their GLSL counterparts.
 
 ## Example
 ![Example](./Images/example.png "Example")
