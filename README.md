@@ -18,6 +18,8 @@ Regarding the suffixes:
 - Shaders with the `Chroma` suffix are chroma shaders. These are meant to be used on high-quality sources, and you should not use them alongside luma prescalers.
 - The old `YCbCr` and `RGB` variants can be found under the "Old" directory. These have not been updated to reflect the new software stack and training dataset yet.
 
+You may occasionaly find some models under the "Experiments" directory. This is meant to serve as a testing ground for the main ArtCNN models.
+
 ## Technical Details
 The luma models are trained on an anime dataset containing screenshots from the following shows:
 - Violet Evergarden
@@ -41,11 +43,11 @@ glsl-shader="path/to/shader/ArtCNN_C4F16_DS.glsl"
 ```
 
 ## VapourSynth Instructions
-ArtCNN is natively supported by [vs-mlrt](https://github.com/AmusementClub/vs-mlrt/blob/master/scripts/vsmlrt.py).
+ArtCNN is natively supported by [vs-mlrt](https://github.com/AmusementClub/vs-mlrt/blob/master/scripts/vsmlrt.py). Please follow the instructions found there.
 
 Alternatively, can also run the GLSL shaders with [vs-placebo](https://github.com/Lypheo/vs-placebo).
 
-The ONNX models should be generally preferred over their GLSL counterparts.
+ONNX models should be generally preferred over their GLSL counterparts.
 
 ## Example
 ![Example](./Images/example.png "Example")
