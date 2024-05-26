@@ -21,14 +21,15 @@ Regarding the suffixes:
 You may occasionaly find some models under the "Experiments" directory. This is meant to serve as a testing ground for the main ArtCNN models.
 
 ## Technical Details
-The luma models are trained on an anime dataset containing screenshots from the following shows:
+The luma models are trained on an anime dataset containing images from the following sources:
 - Violet Evergarden
 - Koe no Katachi
 - Kimi no Na Wa
-- Hibike Euphonium
-- Yuru Camp
-- SAO OS and Progressive
+- Hibike Euphonium (Chikai and Ensemble)
+- Yuru Camp (Film only)
+- SAO (OS and Progressive)
 - Evangelion: 3.0+1.0
+- Tsukihime R (Backgrounds only)
 
 The Chroma models are trained on DIV2K+Manga109.
 
