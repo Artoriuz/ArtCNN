@@ -1,26 +1,27 @@
 # ArtCNN
 
 ## Overview
-Super-Resolution Convolutional Neural Networks optimised for anime. ArtCNN implements a simple feed-forward architecture with one long-skip connection and a pixel-shuffle layer to get the HR image.
+ArtCNN is a collection of SISR CNNs optimised for anime content.
 
-![Model Architecture](./Images/model_architecture.png "Model Architecture")
+Two distinct architectures are currently offered:
+- `C`: Original ArtCNN models optimised mostly for speed. The architecture consists of a series of convolution layers aided by a single long-skip connection. Mostly offered as GLSL shaders to be used in real-time on mpv.
+- `R`: Bigger model aimed mostly at encoding tasks. On top of having more filters per convolution layer, the model was also made much deeper with the help of residual blocks and short-skip connections. This is currently only offered in the `R16F96` configuration, which has 16 residual blocks and 96 filters per convolution layer. Offered only in the ONNX format.
 
-The model is offered in 4 sizes:
-- `C16F64`: This has 16 internal convolution layers with 64 filters each. Offered only in the ONNX format. If you're interested in using ArtCNN outside of mpv you should probably use this.
-- `C4F32`: This has 4 internal convolution layers with 32 filters each. You need a relatively decent GPU to run this well. Also offered in the ONNX format.
+The `C` architecture is offered in 4 sizes:
+- `C16F64`: This has 16 internal convolution layers with 64 filters each. Offered only in the ONNX format.
+- `C4F32`: This has 4 internal convolution layers with 32 filters each. You need a relatively decent GPU to run this well.
 - `C4F16`: This has 4 internal convolution layers with 16 filters each. You should be able to run this on most modern GPUs.
 - `C4F8`: This has 4 internal convolution layers with 8 filters each. You should probably only use this on very slow systems.
 
 Regarding the suffixes:
-- Shaders without any suffixes are the base models. These are meant to respect the source and produce fairly neutral outputs.
-- Shaders with the `DS` suffix are trained to denoise and sharpen, which is usually useful for most web sources.
-- Shaders with the `CMP` suffix are compute shaders. These are still experimental, but they're usually faster (specially on Vulkan).
-- Shaders with the `Chroma` suffix are chroma shaders. These are meant to be used on high-quality sources, and you should not use them alongside luma prescalers.
-- The old `YCbCr` and `RGB` variants can be found under the "Old" directory. These have not been updated to reflect the new software stack and training dataset yet.
+- Models without any suffixes are the baseline. These are neutral luma doublers.
+- `DS` variants are trained to denoise and sharpen, which is usually useful for most web sources.
+- `CMP` variants are compute shaders. These still have a few issues, but they're generally much faster (specially on Vulkan).
+- `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and will not work as intended in any other scenario (which means you can't use them after luma doublers).
 
-You may occasionaly find some models under the "Experiments" directory. This is meant to serve as a testing ground for the main ArtCNN models.
+You may occasionaly find some models under the "Experiments" directory. This is meant to serve as a testing ground for future models.
 
-## Technical Details
+## Training Details
 The luma models are trained on an anime dataset containing images from the following sources:
 - Violet Evergarden
 - Koe no Katachi
@@ -29,7 +30,6 @@ The luma models are trained on an anime dataset containing images from the follo
 - Yuru Camp (Film only)
 - SAO (OS and Progressive)
 - Evangelion: 3.0+1.0
-- Tsukihime R (Backgrounds only)
 
 The Chroma models are trained on DIV2K+Manga109.
 
@@ -48,7 +48,4 @@ ArtCNN is natively supported by [vs-mlrt](https://github.com/AmusementClub/vs-ml
 
 Alternatively, can also run the GLSL shaders with [vs-placebo](https://github.com/Lypheo/vs-placebo).
 
-ONNX models should be generally preferred over their GLSL counterparts.
-
-## Example
-![Example](./Images/example.png "Example")
+ONNX models should be generally preferred over their GLSL counterparts for both quality and performance reasons.
