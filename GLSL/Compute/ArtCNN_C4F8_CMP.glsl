@@ -547,9 +547,10 @@ void hook() {
 #endif
 
 void hook() {
-    V4 result = V4(0.0, 0.0, 0.0, 1.0);
+    vec4 result = vec4(0.0, 0.0, 0.0, 1.0);
     vec2 f0 = fract(conv2d_6_pos * conv2d_6_size);
     ivec2 i0 = ivec2(f0 * vec2(2.0));
-    result.x = F(conv2d_6_tex((vec2(0.5) - f0) * conv2d_6_pt + conv2d_6_pos)[i0.y * 2 + i0.x]);
-    imageStore(out_image, ivec2(gl_GlobalInvocationID), clamp(result, F(0.0), F(1.0)));
+    result.x = conv2d_6_tex((vec2(0.5) - f0) * conv2d_6_pt + conv2d_6_pos)[i0.y * 2 + i0.x];
+    imageStore(out_image, ivec2(gl_GlobalInvocationID), clamp(result, 0.0, 1.0));
 }
+
