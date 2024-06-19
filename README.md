@@ -16,7 +16,7 @@ The `C` architecture is offered in 4 sizes:
 Regarding the suffixes:
 - Models without any suffixes are the baseline. These are neutral luma doublers.
 - `DS` variants are trained to denoise and sharpen, which is usually useful for most web sources.
-- `CMP` variants are compute shaders. These still have a few issues, but they're generally much faster (specially on Vulkan).
+- `CMP` variants are compute shaders. These are generally much faster on modern GPUs, specially on Vulkan.
 - `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and will not work as intended in any other scenario (which means you can't use them after luma doublers).
 
 You may occasionaly find some models under the "Experiments" directory. This is meant to serve as a testing ground for future models.
