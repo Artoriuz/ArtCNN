@@ -16,7 +16,7 @@ The `C` architecture is offered in 4 sizes:
 Regarding the suffixes:
 - Models without any suffixes are the baseline. These are neutral luma doublers.
 - `DS` variants are trained to denoise and sharpen, which is usually useful for most web sources.
-- `CMP` variants are compute shaders. These are generally much faster on modern GPUs, specially on Vulkan.
+- `CMP` variants are compute shaders. These are generally much faster on modern GPUs, specially on Vulkan. You should always try to run these variants first, and only fallback to the fragment shaders if you encounter problems and/or performance issues.
 - `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and will not work as intended in any other scenario (which means you can't use them after luma doublers).
 
 You may occasionaly find some models under the "Experiments" directory. This is meant to serve as a testing ground for future models.
@@ -40,7 +40,7 @@ The models are trained using Keras 3 with its JAX backend.
 ## mpv Instructions
 Add something like this to your mpv config:
 ```
-glsl-shader="path/to/shader/ArtCNN_C4F16_DS.glsl"
+glsl-shader="path/to/shader/ArtCNN_C4F16_DS_CMP.glsl"
 ```
 
 ## VapourSynth Instructions
