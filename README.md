@@ -5,10 +5,14 @@ ArtCNN is a collection of SISR CNNs optimised for anime content.
 
 Two distinct architectures are currently offered:
 - `C`: Original ArtCNN models optimised mostly for speed. The architecture consists of a series of convolution layers aided by a single long-skip connection. Mostly offered as GLSL shaders to be used in real-time on mpv.
-- `R`: Bigger model aimed mostly at encoding tasks. On top of having more filters per convolution layer, the model was also made much deeper with the help of residual blocks and short-skip connections. This is currently only offered in the `R16F96` configuration, which has 16 residual blocks and 96 filters per convolution layer. Offered only in the ONNX format.
+- `R`: Bigger model aimed mostly at encoding tasks. On top of having more filters per convolution layer, the model was also made much deeper with the help of residual blocks and short-skip connections. These are only offered in the ONNX format.
+
+The `R` architecture is offered in 2 sizes:
+- `R16F96`: This has 16 residual blocks and 96 filters per convolution layer. Should generally give you the best reconstruction quality.
+- `R8F64`: This has 8 residual blocks and 64 filters per convolution layer. An attempt at balancing quality and performance.
 
 The `C` architecture is offered in 4 sizes:
-- `C16F64`: This has 16 internal convolution layers with 64 filters each. Offered only in the ONNX format.
+- `C16F64`: This has 16 internal convolution layers with 64 filters each. Offered only in the ONNX format as a faster alternative to the `R` models.
 - `C4F32`: This has 4 internal convolution layers with 32 filters each. You need a relatively decent GPU to run this well.
 - `C4F16`: This has 4 internal convolution layers with 16 filters each. You should be able to run this on most modern GPUs.
 - `C4F8`: This has 4 internal convolution layers with 8 filters each. You should probably only use this on very slow systems.
