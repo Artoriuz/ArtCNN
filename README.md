@@ -25,22 +25,6 @@ Regarding the suffixes:
 
 You may occasionaly find some models under the "Experiments" directory. This is meant to serve as a testing ground for future models.
 
-## Training Details
-The luma models are trained on an anime dataset containing images from the following sources:
-- Violet Evergarden
-- Koe no Katachi
-- Kimi no Na Wa
-- Hibike Euphonium (Chikai and Ensemble)
-- Yuru Camp (Film only)
-- SAO (OS and Progressive)
-- Evangelion: 3.0+1.0
-
-The Chroma models are trained on DIV2K+Manga109.
-
-The images are split into smaller 256x256 patches and downsampled with the box filter.
-The L1 loss function is used alongside the Adam optimiser.
-The models are trained using Keras 3 with its JAX backend.
-
 ## mpv Instructions
 Add something like this to your mpv config:
 ```
@@ -51,5 +35,3 @@ glsl-shader="path/to/shader/ArtCNN_C4F16_DS_CMP.glsl"
 ArtCNN is natively supported by [vs-mlrt](https://github.com/AmusementClub/vs-mlrt/blob/master/scripts/vsmlrt.py). Please follow the instructions found there.
 
 Alternatively, can also run the GLSL shaders with [vs-placebo](https://github.com/Lypheo/vs-placebo).
-
-ONNX models should be generally preferred over their GLSL counterparts for both quality and performance reasons.
