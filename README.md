@@ -4,14 +4,14 @@
 ArtCNN is a collection of SISR CNNs optimised for anime content.
 
 Two distinct architectures are currently offered:
-- `C`: Original ArtCNN models optimised mostly for speed. The architecture consists of a series of convolution layers aided by a single long-skip connection. Offered as GLSL shaders to be used in real-time on mpv.
 - `R`: Bigger model aimed mostly at encoding tasks. On top of having more filters per convolution layer, the model was also made much deeper with the help of residual blocks and short-skip connections. Offered in the ONNX format.
+- `C`: Original ArtCNN models optimised mostly for speed. The architecture consists of a series of convolution layers aided by a single long-skip connection. Offered as GLSL shaders to be used in real-time on mpv.
 
 The `R` architecture is offered in 2 sizes:
 - `R16F96`: This has 16 residual blocks and 96 filters per convolution layer. Should generally give you the best reconstruction quality.
 - `R8F64`: This has 8 residual blocks and 64 filters per convolution layer. An attempt at balancing quality and performance.
 
-The `C` architecture is offered in 4 sizes:
+The `C` architecture is offered in 3 sizes:
 - `C4F32`: This has 4 internal convolution layers with 32 filters each. You need a relatively decent GPU to run this well.
 - `C4F16`: This has 4 internal convolution layers with 16 filters each. You should be able to run this on most modern GPUs.
 - `C4F8`: This has 4 internal convolution layers with 8 filters each. You should probably only use this on very slow systems.
@@ -22,7 +22,7 @@ Regarding the suffixes:
 - `DS` variants are trained to denoise and sharpen, which is usually useful for most web sources.
 - `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and will not work as intended in any other scenario (which means you can't use them after luma doublers).
 
-You may occasionaly find some models under the "Experiments" directory. This is meant to serve as a testing ground for future models.
+You may occasionaly find some models under the "Experiments" directory. This is meant to serve as a testing grounds.
 
 ## mpv Instructions
 Add something like this to your mpv config:
