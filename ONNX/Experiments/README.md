@@ -12,6 +12,3 @@ Same as the normal R8F64 but trained with fanart. Looks a bit better on very cle
 
 # ArtCNN_R16F86_SAFE
 Self explanatory.
-
-# ArtCNN_R5F64
-An experiment to check whether longer residual blocks would result in better quality (it doesn't).
