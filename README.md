@@ -11,10 +11,9 @@ The `R` architecture is offered in 2 sizes:
 - `R16F96`: This has 16 residual blocks and 96 filters per convolution layer. Should generally give you the best reconstruction quality.
 - `R8F64`: This has 8 residual blocks and 64 filters per convolution layer. An attempt at balancing quality and performance.
 
-The `C` architecture is offered in 3 sizes:
+The `C` architecture is also offered in 2 sizes:
 - `C4F32`: This has 4 internal convolution layers with 32 filters each. You need a relatively decent GPU to run this well.
 - `C4F16`: This has 4 internal convolution layers with 16 filters each. You should be able to run this on most modern GPUs.
-- `C4F8`: This has 4 internal convolution layers with 8 filters each. You should probably only use this on very slow systems.
 
 Regarding the suffixes:
 - Models without any suffixes are the baseline. These are neutral luma doublers.
