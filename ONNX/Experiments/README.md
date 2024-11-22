@@ -15,3 +15,6 @@ Same as the normal R8F64 but trained with fanart. Looks a bit better on very cle
 
 # ArtCNN_R16F96_FANART
 Self explanatory.
+
+# ArtCNN_R8F64_SE
+Same as the normal R8F64 but with squeeze and excitation (channel attention) in the residual blocks.
