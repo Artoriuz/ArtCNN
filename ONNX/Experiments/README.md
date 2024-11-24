@@ -18,3 +18,6 @@ Self explanatory.
 
 # ArtCNN_R8F64_SE
 Same as the normal R8F64 but with squeeze and excitation (channel attention) in the residual blocks.
+
+# ArtCNN_R8F64_BF
+Same as the normal R8F64 but without biases ("BF" stands for "bias-free").
