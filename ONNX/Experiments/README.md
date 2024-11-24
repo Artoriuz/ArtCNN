@@ -24,3 +24,6 @@ Same as the normal R8F64 but without biases ("BF" stands for "bias-free").
 
 # ArtCNN_R8F64_GELU
 Same as the normal R8F64 but with GELU activations.
+
+# ArtCNN_R8F64_DEV
+Same as the normal R8F64 but trained with both the Anime and Fanart datasets (I might make this the default).
