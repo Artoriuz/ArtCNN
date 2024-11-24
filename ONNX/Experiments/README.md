@@ -21,3 +21,6 @@ Same as the normal R8F64 but with squeeze and excitation (channel attention) in 
 
 # ArtCNN_R8F64_BF
 Same as the normal R8F64 but without biases ("BF" stands for "bias-free").
+
+# ArtCNN_R8F64_GELU
+Same as the normal R8F64 but with GELU activations.
