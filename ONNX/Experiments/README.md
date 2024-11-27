@@ -30,3 +30,6 @@ Same as the normal R8F64 but trained with both the Anime and Fanart datasets (I 
 
 # ArtCNN_R16F96_DEV
 Self explanatory.
+
+# ArtCNN_R8F64_AA
+Same as the normal R8F64 but trained with images downsampled with point to add aliasing. This model shifts the image.
