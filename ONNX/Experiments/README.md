@@ -24,3 +24,6 @@ Same as the normal R8F64 but without biases ("BF" stands for "bias-free").
 
 # ArtCNN_R8F64_AA
 Same as the normal R8F64 but trained with images downsampled with point to add aliasing. This model shifts the image.
+
+# ArtCNN_R8F64_DEV
+Same as the normal R8F64 but trained with both anime and fanart (approximately 3/4 anime and 1/4 fanart).
