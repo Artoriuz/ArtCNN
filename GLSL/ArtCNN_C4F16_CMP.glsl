@@ -1405,4 +1405,3 @@ void hook() {
     result.x = conv2d_6_tex((vec2(0.5) - f0) * conv2d_6_pt + conv2d_6_pos)[i0.y * 2 + i0.x];
     imageStore(out_image, ivec2(gl_GlobalInvocationID), clamp(result, 0.0, 1.0));
 }
-
