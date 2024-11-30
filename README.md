@@ -33,3 +33,6 @@ glsl-shader="path/to/shader/ArtCNN_C4F16_DS_CMP.glsl"
 ArtCNN is natively supported by [vs-mlrt](https://github.com/AmusementClub/vs-mlrt). Please follow the instructions found there.
 
 Alternatively, can also run the GLSL shaders with [vs-placebo](https://github.com/Lypheo/vs-placebo).
+
+## Examples
+![ArtCNN Example](./Images/artcnn_examples.png "ArtCNN Example")

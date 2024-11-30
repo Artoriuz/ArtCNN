@@ -16,5 +16,5 @@ Same as the normal models but without biases ("BF" stands for "bias-free").
 # AA
 Same as the normal models but trained with images downsampled with point to add aliasing. Shifts the image.
 
-# DEV
-Same as the normal models but trained with both anime and fanart (approximately 3/4 anime and 1/4 fanart).
+# SAFE
+Same as the normal models but trained with anime frames only (normal models have some fanarts in the dataset as well).
