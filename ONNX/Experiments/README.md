@@ -18,3 +18,6 @@ Same as the normal models but trained with images downsampled with point to add 
 
 # SAFE
 Same as the normal models but trained with anime frames only (normal models have some fanarts in the dataset as well).
+
+# DEINT
+1x deinterlacer model that receives even lines and outputs odd lines.
