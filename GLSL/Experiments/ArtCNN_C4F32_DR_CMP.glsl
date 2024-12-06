@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-//!DESC ArtCNN C4F32 EXP2 (Conv2D)
+//!DESC ArtCNN C4F32 DR (Conv2D)
 //!COMPUTE 48 32 12 16
 //!HOOK LUMA
 //!BIND LUMA
@@ -156,7 +156,7 @@ void hook() {
     imageStore(out_image, output_base + ivec2(3, 1), result7);
 }
 
-//!DESC ArtCNN C4F32 EXP2 (Conv2D-1-ReLU)
+//!DESC ArtCNN C4F32 DR (Conv2D-1-ReLU)
 //!COMPUTE 48 32 12 16
 //!HOOK LUMA
 //!BIND conv2d
@@ -866,7 +866,7 @@ void hook() {
     imageStore(out_image, output_base + ivec2(3, 1), max(result7, V4(0.0)));
 }
 
-//!DESC ArtCNN C4F32 EXP2 (Conv2D-2-ReLU)
+//!DESC ArtCNN C4F32 DR (Conv2D-2-ReLU)
 //!COMPUTE 48 32 12 16
 //!HOOK LUMA
 //!BIND conv2d_1
@@ -1576,7 +1576,7 @@ void hook() {
     imageStore(out_image, output_base + ivec2(3, 1), max(result7, V4(0.0)));
 }
 
-//!DESC ArtCNN C4F32 EXP2 (Conv2D-3-ReLU)
+//!DESC ArtCNN C4F32 DR (Conv2D-3-ReLU)
 //!COMPUTE 48 32 12 16
 //!HOOK LUMA
 //!BIND conv2d_2
@@ -2286,7 +2286,7 @@ void hook() {
     imageStore(out_image, output_base + ivec2(3, 1), max(result7, V4(0.0)));
 }
 
-//!DESC ArtCNN C4F32 EXP2 (Conv2D-4-ReLU)
+//!DESC ArtCNN C4F32 DR (Conv2D-4-ReLU)
 //!COMPUTE 48 32 12 16
 //!HOOK LUMA
 //!BIND conv2d_3
@@ -2996,7 +2996,7 @@ void hook() {
     imageStore(out_image, output_base + ivec2(3, 1), max(result7, V4(0.0)));
 }
 
-//!DESC ArtCNN C4F32 EXP2 (Conv2D-5)
+//!DESC ArtCNN C4F32 DR (Conv2D-5)
 //!COMPUTE 48 32 12 16
 //!HOOK LUMA
 //!BIND conv2d_4
@@ -3706,7 +3706,7 @@ void hook() {
     imageStore(out_image, output_base + ivec2(3, 1), result7);
 }
 
-//!DESC ArtCNN C4F32 EXP2 (Conv2D-6)
+//!DESC ArtCNN C4F32 DR (Conv2D-6)
 //!COMPUTE 12 16 12 16
 //!HOOK LUMA
 //!BIND conv2d
@@ -3899,7 +3899,7 @@ void hook() {
     imageStore(out_image, output_base + ivec2(0, 0), result0);
 }
 
-//!DESC ArtCNN C4F32 EXP2 (Depth-To-Space)
+//!DESC ArtCNN C4F32 DR (Depth-To-Space)
 //!COMPUTE 12 16 12 16
 //!HOOK LUMA
 //!BIND conv2d_6
