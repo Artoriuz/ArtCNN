@@ -43,13 +43,15 @@ Alternatively, can also run the GLSL shaders with [vs-placebo](https://github.co
 
 The original `C` architecture is the result of the research I've conducted during my MSc. Starting from [EDSR](https://arxiv.org/abs/1707.02921), I miniaturised and thoroughly simplified the model to maximise quality within a very constrained performance budget. The subsequent `R` architecture was born from various experiments trying to scale ArtCNN up while still attempting to balance quality and performance.
 
+My goal is to keep ArtCNN as vanilla as possible, so don't expect bleeding-edge ideas to be adopted until they've stood the test of time.
+
 ### Why ReLU activations?
 
 Using ReLU instead of fancier options like the GELU or the SiLU is a deliberate choice. The quality gains from switching to different activations are difficult to justify when you take into account the performance penalty. ArtCNN is aimed at video playback and encoding, where speed matters. If you want to understand why the ReLU is faster, feel free to check [ReLU Strikes Back: Exploiting Activation Sparsity in Large Language Models](https://arxiv.org/abs/2310.04564).
 
 ### Why the L1 loss?
 
-The L1 loss (mean absolute error) is still the standard loss used to train state-of-the-art distortion-based SISR models. Researchers have attempted to design more sophisticated losses to better match human perception of quality, but ultimately the best results are often obtained by combining the L1 loss with something else, just to help it get out of local minima. I've been playing around with structural-similarity and frequency-domain losses, but the results so far have not been conclusive.
+The L1 loss (mean absolute error) is still the standard loss used to train state-of-the-art distortion-based SISR models. Researchers have attempted to design more sophisticated losses to better match human perception of quality, but ultimately the best results are often obtained by [combining the L1 loss with something else](https://research.nvidia.com/sites/default/files/pubs/2017-03_Loss-Functions-for/NN_ImgProc.pdf), just to help it get out of local minima. I've been playing around with structural-similarity and frequency-domain losses, but the results so far have not been conclusive.
 
 ### Why AdamW?
 
@@ -58,6 +60,18 @@ AdamW's weight decay seems to help with generalisation. Models trained with Adam
 ### Why 3 conv layers instead of 2 in the residual blocks?
 
 This was an entirely empirical choice as well. The usual `Conv->ReLU->Conv->Add` residual block from [EDSR](https://arxiv.org/abs/1707.02921) ended up slightly worse than `Conv->ReLU->Conv->ReLU->Conv->Add` even when employed on slightly larger models with a learning capacity advantage. I've experimented with deeper residual blocks, but they did not yield consistent improvements. [SPAN](https://arxiv.org/abs/2311.12770) has a similar residual block configuration if we exclude the attention mechanism, and the authors of [NFNet](https://arxiv.org/pdf/2102.06171) found it to be an improvement as well.
+
+### Why no channel attention?
+
+The global average pooling layer required for channel attention is very slow.
+
+### Why no vision transformers?
+
+CNNs have a stronger inductive bias to help solve image processing tasks, this means you don't need as much data or as big of a model to get good results.
+
+Papers like [A ConvNet for the 2020s](https://arxiv.org/abs/2201.03545) and [ConvNets Match Vision Transformers at Scale](https://arxiv.org/abs/2310.16764) have also showed that CNNs are still competitive with transformers even at the scales in which they were designed to excel.
+
+As an electrical engineer I also simply find CNNs more elegant.
 
 ### Why Keras?
 
