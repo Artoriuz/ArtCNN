@@ -51,7 +51,9 @@ Using ReLU instead of fancier options like the GELU or the SiLU is a deliberate 
 
 ### Why the L1 loss?
 
-The L1 loss (mean absolute error) is still the standard loss used to train state-of-the-art distortion-based SISR models. Researchers have attempted to design more sophisticated losses to better match human perception of quality, but ultimately the best results are often obtained by [combining the L1 loss with something else](https://research.nvidia.com/sites/default/files/pubs/2017-03_Loss-Functions-for/NN_ImgProc.pdf), just to help it get out of local minima. I've been playing around with structural-similarity and frequency-domain losses, but the results so far have not been conclusive.
+The L1 loss (mean absolute error) is still the standard loss used to train state-of-the-art distortion-based SISR models. Researchers have attempted to design more sophisticated losses to better match human perception of quality, but ultimately the best results are often obtained by combining the L1 loss with something else, just to help it get out of local minima. This is very well detailed in [Loss Functions for Image Restoration with Neural Networks](https://research.nvidia.com/sites/default/files/pubs/2017-03_Loss-Functions-for/NN_ImgProc.pdf).
+
+I've been playing around with structural-similarity and frequency-domain losses, but the results so far have not been conclusive.
 
 ### Why AdamW?
 
