@@ -19,5 +19,20 @@ Same as the normal models but trained with images downsampled with point to add 
 # SAFE
 Same as the normal models but trained with anime frames only (normal models have some fanarts in the dataset as well).
 
+# DCT
+Same as the normal models but trained with the difference between the DCTs as the loss function.
+
+# DFT
+Same as the normal models but trained with the difference between the DFTs as the loss function.
+
+# MSSIM
+Same as the normal models but trained with MAE+MS-SSIM as the loss function.
+
+# MSMAE
+Same as the normal models but trained with MAE at various scales as the loss function.
+
+# DCT_MAE
+Same as the normal models but trained with MAE+DCT as the loss function.
+
 # DEINT
 1x deinterlacer model that receives even lines and outputs odd lines.
