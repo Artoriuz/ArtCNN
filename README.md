@@ -63,9 +63,13 @@ AdamW's weight decay seems to help with generalisation. Models trained with Adam
 
 This was an entirely empirical choice as well. The usual `Conv->ReLU->Conv->Add` residual block from [EDSR](https://arxiv.org/abs/1707.02921) ended up slightly worse than `Conv->ReLU->Conv->ReLU->Conv->Add` even when employed on slightly larger models with a learning capacity advantage. I've experimented with deeper residual blocks, but they did not yield consistent improvements. [SPAN](https://arxiv.org/abs/2311.12770) has a similar residual block configuration if we exclude the attention mechanism, and the authors of [NFNet](https://arxiv.org/abs/2102.06171) found it to be an improvement as well.
 
+### Why depth to space?
+
+The depth to space operation is generally better than using transposed convolutions and it's the standard on SISR models in general. ArtCNN is also designed to have all of its convolutional layers operating with LR feature maps, only upsampling them as the very last step. While this is mostly done for speed, it also provides great memory footprint benefits.
+
 ### Why no channel attention?
 
-The global average pooling layer required for channel attention is very slow.
+The global average pooling layer required for channel attention is very slow. I'm not particularly against attention mechanisms though, and alternatives can be considered in the future if they show promising results. The last time I experimented with this, spatial attention was not only better but also faster.
 
 ### Why no vision transformers?
 
@@ -77,4 +81,4 @@ As an electrical engineer I also simply find CNNs more elegant.
 
 ### Why Keras?
 
-I'm just familiar with Keras. I've tried migrating to PyTorch a few times, but there was always something annoying enough about it for me to scrap the idea. Keras 3 supports TF, PyTorch and JAX as backends which also makes it very versatile. If I were to migrate away from Keras now, I'd probably just go straight to [Flax](https://flax.readthedocs.io/en/latest/) as that would keep me in the same ecosystem.
+I'm just familiar with Keras. I've tried migrating to PyTorch a few times, but there was always something annoying enough about it for me to scrap the idea. Keras 3 supports TF, PyTorch and JAX as backends which also makes it very versatile. If I were to migrate away from Keras now, I'd probably just go straight to [Flax](https://flax.readthedocs.io/en/latest/).
