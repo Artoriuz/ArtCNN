@@ -26,6 +26,7 @@ You may occasionaly find some models under the "Experiments" directories. This i
 ## mpv Instructions
 Add something like this to your mpv config:
 ```
+vo=gpu-next
 glsl-shader="path/to/shader/ArtCNN_C4F16_DS_CMP.glsl"
 ```
 
