@@ -34,5 +34,8 @@ Same as the normal models but trained with MAE at various scales as the loss fun
 # DCT_MAE
 Same as the normal models but trained with MAE+DCT as the loss function.
 
+# V2
+Uses the RCAB from RCAN instead of normal residual blocks.
+
 # DEINT
 1x deinterlacer model that receives even lines and outputs odd lines.
