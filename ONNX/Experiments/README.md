@@ -37,5 +37,8 @@ Same as the normal models but trained with MAE+DCT as the loss function.
 # V2
 Uses the RCAB from RCAN instead of normal residual blocks.
 
+# DEV
+Dataset changes.
+
 # DEINT
 1x deinterlacer model that receives even lines and outputs odd lines.
