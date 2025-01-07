@@ -1,7 +1,7 @@
 # ArtCNN
 
 ## Overview
-ArtCNN is a collection of SISR CNNs optimised for anime content.
+ArtCNN is a collection of SISR CNNs aimed at anime content.
 
 Two distinct architectures are currently offered:
 - `R`: Bigger model aimed mostly at encoding tasks. On top of having more filters per convolution layer, the model was also made much deeper with the help of residual blocks and short-skip connections. Offered in the ONNX format.
@@ -64,24 +64,28 @@ AdamW's weight decay seems to help with generalisation. Models trained with Adam
 
 This was an entirely empirical choice as well. The usual `Conv->ReLU->Conv->Add` residual block from [EDSR](https://arxiv.org/abs/1707.02921) ended up slightly worse than `Conv->ReLU->Conv->ReLU->Conv->Add` even when employed on slightly larger models with a learning capacity advantage. I've experimented with deeper residual blocks, but they did not yield consistent improvements. [SPAN](https://arxiv.org/abs/2311.12770) has a similar residual block configuration if we exclude the attention mechanism, and the authors of [NFNet](https://arxiv.org/abs/2102.06171) found it to be an improvement as well.
 
-I've also experimented with bottlenecked residual blocks and inverted residuals. However, the `1x1` convolution layers used to reduce or expand channel dimensions introduce additional sequential dependencies, slowing down the model even when the total parameter count remains similar. ArtCNN is probably just too small for this to be useful.
+I've also experimented with bottlenecked residual blocks and inverted residuals. However, the `1x1` convolution layers introduce additional sequential dependencies, slowing down the model even when the total parameter count remains similar.
 
 ### Why depth to space?
 
 The depth to space operation is generally better than using transposed convolutions and it's the standard on SISR models in general. ArtCNN is also designed to have all of its convolution layers operating with LR feature maps, only upsampling them as the very last step. This is mostly done for speed, but it also provides great memory footprint benefits.
 
-### Why no channel attention?
+### Why no attention mechanisms?
 
-The global average pooling layer required for channel attention is very slow. I'm not particularly against attention mechanisms though, and alternatives can be considered in the future if they show promising results. The last time I experimented with this, spatial attention was not only better but also faster.
+The global average pooling layer required for channel attention is often very slow. Spatial attention offers some benefits but it isn't super convincing. ArtCNN is also small enough that I'm somewhat convinced it doesn't really need attention mechanisms to do well.
 
 ### Why no vision transformers?
 
 CNNs have a stronger inductive bias to help solve image processing tasks, this means you don't need as much data or as big of a model to get good results.
 
-Papers like [A ConvNet for the 2020s](https://arxiv.org/abs/2201.03545) and [ConvNets Match Vision Transformers at Scale](https://arxiv.org/abs/2310.16764) have also showed that CNNs are still competitive with transformers even at the scales in which they were designed to excel. This is likely also true against newer architectures like Mamba, see: [The “it” in AI models is the dataset](https://nonint.com/2023/06/10/the-it-in-ai-models-is-the-dataset/).
+Papers like [A ConvNet for the 2020s](https://arxiv.org/abs/2201.03545) and [ConvNets Match Vision Transformers at Scale](https://arxiv.org/abs/2310.16764) have also showed that CNNs are still competitive with transformers even at the scales in which they were designed to excel. This is also true against Mamba, see: [MambaOut: Do We Really Need Mamba for Vision?](https://arxiv.org/abs/2405.07992).
 
 As an electrical engineer I also simply find CNNs more elegant.
 
 ### Why Keras?
 
-I'm just familiar with Keras. I've tried migrating to PyTorch a few times, but there was always something annoying enough about it for me to scrap the idea. As someone who really likes Numpy, naturally I also like [JAX](https://jax.readthedocs.io/en/latest/index.html), and if I were to migrate away from Keras now I'd probably just go straight to [Flax](https://flax.readthedocs.io/en/latest/).
+I'm just familiar with Keras. I learnt a lot reading [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow](https://www.google.com/books/edition/_/HHetDwAAQBAJ) and back when I started PyTorch wasn't as dominant in academia as it is today.
+
+I've actually tried migrating to PyTorch a few times, but there was always something annoying enough about it for me to scrap the idea. The biggest deal breaker is the insistence on channels-first when it is not only counter-intuitive but also slower than channels-last. The PyTorch version of R8F64 trains roughly ~40% slower than its Keras+JAX counterpart.
+
+Talking about [JAX](https://jax.readthedocs.io/en/latest/index.html), I honestly think it's one of the coolest pieces of software I've ever played with and I'd love to fully migrate to [Flax](https://flax.readthedocs.io/en/latest/) once it can export ONNX natively.
