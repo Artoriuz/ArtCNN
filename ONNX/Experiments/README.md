@@ -1,8 +1,8 @@
 # DEV
 Dataset changes.
 
-# DEV_PROMO
-DEV but with fanart replaced by promotional art.
+# DEV_LL
+DEV but trained with images downsampled in linear light.
 
 # SAFE
 DEV but trained on anime-frames only.
