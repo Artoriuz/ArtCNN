@@ -1,33 +1,30 @@
 # ArtCNN
 
 ## Overview
-ArtCNN is a collection of SISR CNNs aimed at anime content.
+ArtCNN is a collection of simple SISR CNNs aimed at anime content.
 
 Two distinct architectures are currently offered:
-- `R`: Bigger model aimed mostly at encoding tasks. On top of having more filters per convolution layer, the model was also made much deeper with the help of residual blocks and short-skip connections. Offered in the ONNX format.
-- `C`: Original ArtCNN models optimised mostly for speed. The architecture consists of a series of convolution layers aided by a single long-skip connection. Offered as GLSL shaders to be used in real-time on mpv.
+- `R`: Bigger model aimed mostly at non real-time tasks like rescaling. On top of having more filters per convolution layer, the model was also made much deeper with the help of residual blocks and short-skip connections. Offered only in the ONNX format.
+- `C`: Original ArtCNN models optimised mostly for speed. These should only be used for real-time tasks like video playback. The architecture consists of a series of convolution layers aided by a single long-skip connection. Offered in the ONNX format and as GLSL shaders.
 
-The `R` architecture is offered in 2 sizes:
-- `R16F96`: This has 16 residual blocks and 96 filters per convolution layer. Should generally give you the best reconstruction quality.
-- `R8F64`: This has 8 residual blocks and 64 filters per convolution layer. An attempt at balancing quality and performance.
-
-The `C` architecture is also offered in 2 sizes:
-- `C4F32`: This has 4 internal convolution layers with 32 filters each. You need a relatively decent GPU to run this well.
-- `C4F16`: This has 4 internal convolution layers with 16 filters each. You should be able to run this on most modern GPUs.
+4 sizes are currently offered:
+- `R16F96`: This has 16 residual blocks and 96 filters per convolution layer. Should generally give you the best reconstruction quality. ~4m params.
+- `R8F64`: This has 8 residual blocks and 64 filters per convolution layer. An attempt at balancing quality and performance for non real-time tasks. ~926k params.
+- `C4F32`: This has 4 internal convolution layers with 32 filters each. Use this on real-time tasks if your system can handle it. ~48k params.
+- `C4F16`: This has 4 internal convolution layers with 16 filters each. Cheaper variant that should work well on most modern GPUs. ~12k params.
 
 Regarding the suffixes:
 - Models without any suffixes are the baseline. These are neutral luma doublers.
-- `CMP` variants are compute shaders. These are generally much faster on modern GPUs, specially on Vulkan. You should always try to run these variants first, and only fallback to the fragment shaders if you encounter problems and/or performance issues.
 - `DS` variants are trained to denoise and sharpen, which is usually useful for most web sources.
-- `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and will not work as intended in any other scenario (which means you can't use them after luma doublers).
+- `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and will not work correctly in any other scenario.
 
-You may occasionaly find some models under the "Experiments" directories. This is meant to serve as a testing grounds.
+ArtCNN is trained on a combination of high-quality anime frames and fanart. Models trained only on anime or fanart can be found under the `Flavours` directory. These might be useful depending on what you're upscaling. You may occasionaly find some models under the `Experiments` directory. This is meant to serve as a testing grounds.
 
 ## mpv Instructions
 Add something like this to your mpv config:
 ```
 vo=gpu-next
-glsl-shader="path/to/shader/ArtCNN_C4F16_DS_CMP.glsl"
+glsl-shader="path/to/shader/ArtCNN_C4F16_DS.glsl"
 ```
 
 ## VapourSynth Instructions
@@ -86,6 +83,6 @@ As an electrical engineer I also simply find CNNs more elegant.
 
 I'm just familiar with Keras. I learnt a lot reading [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow](https://www.google.com/books/edition/_/HHetDwAAQBAJ) and back when I started PyTorch wasn't as dominant in academia as it is today.
 
-I've actually tried migrating to PyTorch a few times, but there was always something annoying enough about it for me to scrap the idea. The biggest deal breaker is the insistence on channels-first when it is not only counter-intuitive but also slower than channels-last. The PyTorch version of R8F64 trains roughly ~40% slower than its Keras+JAX counterpart.
+I've actually tried migrating to PyTorch a few times, but there was always something annoying enough about it for me to scrap the idea. The biggest deal breaker is the insistence on channels-first when it is not only counter-intuitive but also slower than channels-last. The PyTorch version of R8F64 trains roughly ~40% slower than its Keras+JAX counterpart (though, admittedly, I'm not super familiar with PyTorch so maybe there's a way to speed it up).
 
 Talking about [JAX](https://jax.readthedocs.io/en/latest/index.html), I honestly think it's one of the coolest pieces of software I've ever played with and I'd love to fully migrate to [Flax](https://flax.readthedocs.io/en/latest/) once it can export ONNX natively.
