@@ -18,9 +18,7 @@ Regarding the suffixes:
 - `DS` variants are trained to denoise and sharpen, which is usually useful for most web sources.
 - `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and will not work correctly in any other scenario.
 
-ArtCNN is trained on a combination of high-quality anime frames and fanart. Models trained only on anime or fanart can be found under the `Flavours` directory. These might be useful depending on what you're upscaling.
-
-You may occasionaly find some models under the `Experiments` directory. This is meant to serve as a testing grounds.
+You may occasionaly find some experimental models under the `Experiments` directory.
 
 ## mpv Instructions
 Add something like this to your mpv config:
