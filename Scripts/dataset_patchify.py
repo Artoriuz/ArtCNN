@@ -1,4 +1,5 @@
-from wand.image import Image
+import cv2
+import numpy as np
 from pathlib import Path
 from tqdm import tqdm
 import glob
@@ -6,16 +7,17 @@ import os
 
 patch_size = 256
 
-filelist = sorted(glob.glob('./*.png'))
-for myFile in tqdm(filelist):
-    with Image(filename = myFile) as image:
-        i = 0
-        for h in range(0, image.height, patch_size):
-            for w in range(0, image.width, patch_size):
-                w_end = w + patch_size
-                h_end = h + patch_size
-                if (w_end <= image.width and h_end <= image.height):
-                    with image[w:w_end, h:h_end] as chunk:
-                        chunk.save(filename = Path(myFile).stem + f"-{i:04d}.png")
-                    i += 1
+for myFile in tqdm(sorted(glob.glob('./*.png'))):
+    image = cv2.imread(myFile, cv2.IMREAD_UNCHANGED)
+    h, w = image.shape[:2]
+
+    patches = [
+        image[y:y+patch_size, x:x+patch_size]
+        for y in range(0, h - patch_size + 1, patch_size)
+        for x in range(0, w - patch_size + 1, patch_size)
+    ]
+
+    for i, patch in enumerate(patches):
+        cv2.imwrite(f"{Path(myFile).stem}-{i:04d}.png", patch)
+
     os.remove(myFile)
