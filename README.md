@@ -8,10 +8,13 @@ Two distinct architectures are currently offered:
 - `C`: Original ArtCNN models optimised mostly for speed. These should only be used for real-time tasks like video playback. The architecture consists of a series of convolution layers aided by a single long-skip connection. Offered in the ONNX format and as GLSL shaders.
 
 4 sizes are currently offered:
-- `R16F96`: 16 residual blocks and 96 filters per convolution layer. Should generally give you the best reconstruction quality. ~4m params.
-- `R8F64`: 8 residual blocks and 64 filters per convolution layer. An attempt at balancing quality and performance for non real-time tasks. ~926k params.
-- `C4F32`: 4 internal convolution layers with 32 filters each. Use this on real-time tasks if your system can handle it. ~48k params.
-- `C4F16`: 4 internal convolution layers with 16 filters each. Cheaper variant that should work well on most modern GPUs. ~12k params.
+
+| Model     | Architecture | Residual Blocks/Layers | Filters | Parameter Count | Recommended Usage                                      |
+| --------- | ------------ | ---------------------- | ------- | ----------------| -------------------------------------------------------|
+| `R16F96`  | R            | 16                     | 96      | ~4m             | Highest-quality reconstruction for non real-time tasks |
+| `R8F64`   | R            | 8                      | 64      | ~926k           | Balanced option for non real-time tasks                |
+| `C4F32`   | C            | 4                      | 32      | ~48k            | Real-time tasks if hardware allows                     |
+| `C4F16`   | C            | 4                      | 16      | ~12k            | Lightweight option for real-time tasks                 |
 
 Regarding the suffixes:
 - Models without any suffixes are the baselines. These are neutral luma doublers.
