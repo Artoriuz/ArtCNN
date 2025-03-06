@@ -8,13 +8,13 @@ Two distinct architectures are currently offered:
 - `C`: Original ArtCNN models optimised mostly for speed. These should only be used for real-time tasks like video playback. The architecture consists of a series of convolution layers aided by a single long-skip connection. Offered in the ONNX format and as GLSL shaders.
 
 4 sizes are currently offered:
-- `R16F96`: This has 16 residual blocks and 96 filters per convolution layer. Should generally give you the best reconstruction quality. ~4m params.
-- `R8F64`: This has 8 residual blocks and 64 filters per convolution layer. An attempt at balancing quality and performance for non real-time tasks. ~926k params.
-- `C4F32`: This has 4 internal convolution layers with 32 filters each. Use this on real-time tasks if your system can handle it. ~48k params.
-- `C4F16`: This has 4 internal convolution layers with 16 filters each. Cheaper variant that should work well on most modern GPUs. ~12k params.
+- `R16F96`: 16 residual blocks and 96 filters per convolution layer. Should generally give you the best reconstruction quality. ~4m params.
+- `R8F64`: 8 residual blocks and 64 filters per convolution layer. An attempt at balancing quality and performance for non real-time tasks. ~926k params.
+- `C4F32`: 4 internal convolution layers with 32 filters each. Use this on real-time tasks if your system can handle it. ~48k params.
+- `C4F16`: 4 internal convolution layers with 16 filters each. Cheaper variant that should work well on most modern GPUs. ~12k params.
 
 Regarding the suffixes:
-- Models without any suffixes are the baseline. These are neutral luma doublers.
+- Models without any suffixes are the baselines. These are neutral luma doublers.
 - `DS` variants are trained to denoise and sharpen, which is usually useful for most web sources.
 - `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and will not work correctly in any other scenario.
 
