@@ -19,7 +19,7 @@ Two distinct architectures are currently offered:
 Regarding the suffixes:
 - Models without any suffixes are the baselines. These are neutral luma doublers.
 - `DS` variants are trained to denoise and sharpen, which is usually useful for most web sources.
-- `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and will not work correctly in any other scenario.
+- `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and chroma must be upscaled with bilinear.
 
 You may occasionaly find some experimental models under the `Experiments` directory.
 
@@ -27,13 +27,13 @@ You may occasionaly find some experimental models under the `Experiments` direct
 Add something like this to your mpv config:
 ```
 vo=gpu-next
-glsl-shader="path/to/shader/ArtCNN_C4F16_DS.glsl"
+glsl-shader="path/to/shader/ArtCNN_C4F32_DS.glsl"
 ```
 
 ## VapourSynth Instructions
-ArtCNN is natively supported by [vs-mlrt](https://github.com/AmusementClub/vs-mlrt). Please follow the instructions found there.
+ArtCNN is supported by [vs-mlrt](https://github.com/AmusementClub/vs-mlrt), with an easy-to-use wrapper in [vs-jetpack](https://github.com/Jaded-Encoding-Thaumaturgy/vs-jetpack/). Please follow the instructions found there.
 
-Alternatively, can also run the GLSL shaders with [vs-placebo](https://github.com/Lypheo/vs-placebo).
+Alternatively, can also run the GLSL shaders with [vs-placebo](https://github.com/sgt0/vs-placebo).
 
 ## Examples
 ![ArtCNN Example](./Images/artcnn_examples.png "ArtCNN Example")
