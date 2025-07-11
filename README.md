@@ -4,10 +4,13 @@
 ArtCNN is a collection of simple SISR CNNs aimed at anime content.
 
 Two distinct architectures are currently offered:
-- `R`: Bigger model aimed mostly at non real-time tasks like rescaling. On top of having more filters per convolution layer, the model was also made much deeper with the help of residual blocks and short-skip connections. Offered only in the ONNX format.
 - `C`: Original ArtCNN models optimised mostly for speed. These should only be used for real-time tasks like video playback. The architecture consists of a series of convolution layers aided by a single long-skip connection. Offered in the ONNX format and as GLSL shaders.
+![ArtCNN Architecture](./Images/c4f32.png "ArtCNN Architecture")
 
-4 sizes are currently offered:
+- `R`: Bigger models aimed mostly at non real-time tasks like rescaling. On top of having more filters per convolution layer, the architecture was also made much deeper with the help of residual blocks and short-skip connections. Offered only in the ONNX format.
+![ArtCNN Architecture](./Images/r8f64.png "ArtCNN Architecture")
+
+4 configurations are currently offered:
 
 | Model     | Architecture | Residual Blocks/Layers | Filters | Parameter Count | Recommended Usage                                      |
 | --------- | ------------ | ---------------------- | ------- | ----------------| -------------------------------------------------------|
