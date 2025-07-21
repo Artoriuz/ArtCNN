@@ -13,9 +13,9 @@ parser.add_argument("-t", "--task", help="Task to perform", default="luma")
 args = parser.parse_args()
 
 print(f"Scaling {args.input} with {args.model}. The task is {args.task}.")
-input = Path(args.input)
-model = Path(args.model)
-chroma_model = Path(args.chroma_model)
+input = Path(args.input) if args.input is not None else None
+model = Path(args.model) if args.model is not None else None
+chroma_model = Path(args.chroma_model) if args.chroma_model is not None else None
 
 match args.task:
     case "luma":
