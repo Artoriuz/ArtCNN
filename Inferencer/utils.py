@@ -68,3 +68,39 @@ def stack(x, y, z):
     z = np.squeeze(z)
     image = np.stack((x, y, z), axis=-1)
     return image
+
+
+def self_ensemble_augment(image):
+    rotations = [0, 90, 180, 270]
+    images = []
+
+    for rotation in rotations:
+        rotated_image = np.rot90(image.copy(), rotation // 90)
+        images.append(rotated_image)
+
+    image = cv2.flip(image, 1)
+
+    for rotation in rotations:
+        rotated_image = np.rot90(image.copy(), rotation // 90)
+        images.append(rotated_image)
+
+    return images
+
+def self_ensemble_combine(images):
+    assert len(images) == 8, "Expected 8 images"
+    deaugmented = []
+
+    for i, rotation in enumerate([0, 90, 180, 270]):
+        img = images[i].copy()
+        img = np.rot90(img, -rotation // 90)
+        deaugmented.append(np.squeeze(img))
+
+    for i, rotation in enumerate([0, 90, 180, 270]):
+        img = images[i + 4].copy()
+        img = np.rot90(img, -rotation // 90)
+        img = cv2.flip(img, 1)
+        deaugmented.append(np.squeeze(img))
+
+    deaugmented = np.array(deaugmented)
+    image = np.mean(deaugmented, axis=0, keepdims=False)
+    return image
