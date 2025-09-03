@@ -23,6 +23,9 @@ class Engine:
 
         if input.shape[3] == 1 or input.shape[3] == 3:
             input = input.transpose(0, 3, 1, 2)
+
+        if self.input_type == "tensor(float16)":
+            input = input.astype(np.float16)
         return input
 
     def fix_output_shape(self, output):
