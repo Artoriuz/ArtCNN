@@ -21,15 +21,15 @@ options:
 ## Examples
 Luma upscaling using a standard luma model:
 ```shell
-python inferencer.py image.png --model ArtCNN_R16F96.onnx --task luma
+python Inferencer/inferencer.py image.png --model ONNX/ArtCNN_R16F96.onnx --task luma
 ```
 
 RGB upscaling using a standard luma model on each channel:
 ```shell
-python inferencer.py image.png --model ArtCNN_R16F96.onnx --task rgb
+python Inferencer/inferencer.py image.png --model ONNX/ArtCNN_R16F96.onnx --task rgb
 ```
 
 YCbCr upscaling using a luma model and a chroma model together:
 ```shell
-python inferencer.py image.png --model ArtCNN_R16F96.onnx --chroma-model ArtCNN_R16F96_Chroma.onnx --task ycbcr
+python Inferencer/inferencer.py image.png --model ONNX/ArtCNN_R16F96.onnx --chroma-model ONNX/ArtCNN_R16F96_Chroma.onnx --task ycbcr
 ```
