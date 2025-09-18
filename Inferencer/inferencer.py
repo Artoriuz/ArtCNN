@@ -89,5 +89,10 @@ match args.task:
         pred = self_ensemble_combine(preds)
         save_image(pred, f"{input.stem}_{model.stem}_{args.task}.png", grayscale=False)
 
+    case "denoise-rgb":
+        engine = Engine(model)
+        image = load_image(input, grayscale=False)
+        pred = engine.run(image)
+        save_image(pred, f"{input.stem}_{model.stem}_{args.task}.png", grayscale=False)
     case _:
         print("Unsupported task")

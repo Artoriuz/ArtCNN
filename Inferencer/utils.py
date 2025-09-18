@@ -1,7 +1,6 @@
 import numpy as np
 import cv2
 
-
 def rgb2ycbcr(image):
     """
     Convert RGB image to YCbCr following BT.709 standard.
