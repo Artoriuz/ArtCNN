@@ -21,9 +21,12 @@ Two distinct architectures are currently offered:
 | `C4F16`   | C            | 4                      | 16      | ~12k            | Lightweight option for real-time tasks                 |
 
 Regarding the suffixes:
-- Models without any suffixes are the baselines. These are neutral luma doublers.
-- `DS` variants are trained to denoise and sharpen, which is usually useful for most web sources.
-- `Chroma` variants are trained to reconstruct chroma. These are intended to be used on 4:2:0 content and chroma must be upscaled with bilinear.
+- Models without any suffixes are neutral luma doublers.
+- `DS`: Luma doublers trained to denoise and sharpen.
+- `DN`: Luma doublers trained to denoise and soften.
+- `Chroma`: Trained to reconstruct chroma. These are intended to be used on 4:2:0 BT.709 YCbCr content, and chroma must be upscaled with bilinear first.
+- `JPEG444`: Trained to clean JPEG artifacts. These are intended to be used on 4:4:4 JPEGs.
+- `JPEG420`: Trained to clean JPEG artifacts. These are intended to be used on 4:2:0 JPEGs.
 
 You may occasionaly find some experimental models under the `Experiments` directory.
 
