@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+from onnxconverter_common import float16
 
 def rgb2ycbcr(image):
     """
@@ -57,15 +58,12 @@ def bilinear(image, scaling_factor):
 
 def unstack(image):
     image = np.squeeze(image)
-    x, y, z = np.unstack(image, axis=-1)
-    return (x, y, z)
+    return tuple(np.unstack(image, axis=-1))
 
 
-def stack(x, y, z):
-    x = np.squeeze(x)
-    y = np.squeeze(y)
-    z = np.squeeze(z)
-    image = np.stack((x, y, z), axis=-1)
+def stack(*channels):
+    squeezed_channels = [np.squeeze(ch) for ch in channels]
+    image = np.stack(squeezed_channels, axis=-1)
     return image
 
 
@@ -103,3 +101,7 @@ def self_ensemble_combine(images):
     deaugmented = np.array(deaugmented)
     image = np.mean(deaugmented, axis=0, keepdims=False)
     return image
+
+def convert_to_fp16(model_fp32):
+    model_fp16 = float16.convert_float_to_float16(model_fp32)
+    return model_fp16

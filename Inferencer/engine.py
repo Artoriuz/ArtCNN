@@ -6,7 +6,6 @@ class Engine:
         if providers:
             self.providers = providers
         else:
-            # self.providers = ["MIGraphXExecutionProvider", "TensorrtExecutionProvider", "DmlExecutionProvider", "CPUExecutionProvider"]
             self.providers = ["DmlExecutionProvider"]
         self.model = model
         self.session = ort.InferenceSession(self.model, providers=self.providers)
