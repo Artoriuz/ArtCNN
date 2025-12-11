@@ -1,6 +1,7 @@
 import onnxruntime as ort
 import numpy as np
 
+
 class Engine:
     def __init__(self, model, providers=None):
         if providers:

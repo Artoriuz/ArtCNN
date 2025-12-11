@@ -1,26 +1,22 @@
-import cv2
 import numpy as np
+from PIL import Image
 
 
-def load_image(input, grayscale=True):
-    input = cv2.imread(input, cv2.IMREAD_COLOR)
+def load_image(input, mode="L"):
+    input = Image.open(input).convert(mode)
+    profile = input.info.get("icc_profile")
+    input = np.array(input)
 
-    if grayscale:
-        input = cv2.cvtColor(input, cv2.COLOR_BGR2GRAY, 0)
+    if mode == "L":
         input = np.expand_dims(input, axis=-1)
-    else:
-        input = cv2.cvtColor(input, cv2.COLOR_BGR2RGB, 0)
 
-    input = np.array(input).astype(np.float32) / 255.0
+    input = input.astype(np.float32) / 255.0
     input = np.clip(input, 0.0, 1.0)
-    return input
+    return input, profile
 
 
-def save_image(output, filename, grayscale=True):
+def save_image(output, filename, mode="L", icc_profile=None):
     output = np.squeeze(output)
     output = np.around(output * 255.0).astype(np.uint8)
-
-    if not grayscale:
-        output = cv2.cvtColor(output, cv2.COLOR_RGB2BGR, 0)
-
-    cv2.imwrite(filename, output)
+    output = Image.fromarray(output, mode=mode)
+    output.save(filename, icc_profile=icc_profile)
