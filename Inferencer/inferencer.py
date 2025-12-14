@@ -2,8 +2,8 @@ from argparse import ArgumentParser
 from pathlib import Path
 from inout import load_image, save_image
 from utils import (
-    rgb2ycbcr,
-    ycbcr2rgb,
+    rgb2ycbcr_bt709,
+    ycbcr2rgb_bt709,
     bilinear,
     stack,
     unstack,
@@ -26,14 +26,14 @@ def process_image(image, task, model, chroma_model=None):
             raise ValueError("Chroma model is required for YCbCr task.")
         luma_engine = Engine(model)
         chroma_engine = Engine(chroma_model)
-        image = rgb2ycbcr(image)
+        image = rgb2ycbcr_bt709(image)
         y, cb, cr = unstack(image)
         cb = bilinear(cb, 2.0)
         cr = bilinear(cr, 2.0)
         pred_y = luma_engine.run(y)
         pred = chroma_engine.run(stack(pred_y, cb, cr))
         pred_cb, pred_cr = unstack(pred)
-        return ycbcr2rgb(stack(pred_y, pred_cb, pred_cr))
+        return ycbcr2rgb_bt709(stack(pred_y, pred_cb, pred_cr))
     else:
         engine = Engine(model)
         return engine.run(image)

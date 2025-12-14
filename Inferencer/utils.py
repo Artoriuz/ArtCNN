@@ -3,7 +3,7 @@ import cv2
 from onnxconverter_common import float16
 
 
-def rgb2ycbcr(image):
+def rgb2ycbcr_bt709(image):
     """
     Convert RGB image to YCbCr following BT.709 standard.
 
@@ -13,17 +13,14 @@ def rgb2ycbcr(image):
     Returns:
     Image (numpy.ndarray): YCbCr image with channels last.
     """
-    y = np.dot(image, np.array([0.2126, 0.7152, 0.0722]))
-    cb = np.dot(image, np.array([-0.114572, -0.385428, 0.5])) + 0.5
-    cr = np.dot(image, np.array([0.5, -0.454153, -0.045847])) + 0.5
-
-    ycbcr_image = np.stack((y, cb, cr), axis=-1, dtype=np.float32)
-    ycbcr_image = np.clip(ycbcr_image, 0.0, 1.0)
-
-    return ycbcr_image
+    image = np.clip(image, 0.0, 1.0)
+    matrix = np.array([[0.2126, 0.7152, 0.0722], [-0.114572, -0.385428, 0.5], [0.5, -0.454153, -0.045847]], dtype=np.float32)
+    offset = np.array([0.0, 0.5, 0.5], dtype=np.float32)
+    ycbcr_image = image @ matrix.T + offset
+    return np.clip(ycbcr_image, 0.0, 1.0)
 
 
-def ycbcr2rgb(image):
+def ycbcr2rgb_bt709(image):
     """
     Convert YCbCr image to RGB following BT.709 standard.
 
@@ -33,17 +30,12 @@ def ycbcr2rgb(image):
     Returns:
     Image (numpy.ndarray): RGB image with channels last.
     """
-    image[:, :, 1] = image[:, :, 1] - 0.5
-    image[:, :, 2] = image[:, :, 2] - 0.5
-
-    r = np.dot(image, np.array([1.0, 0.0, 1.5748]))
-    g = np.dot(image, np.array([1.0, -0.1873, -0.4681]))
-    b = np.dot(image, np.array([1.0, 1.8556, 0.0]))
-
-    rgb_image = np.stack((r, g, b), axis=-1, dtype=np.float32)
-    rgb_image = np.clip(rgb_image, 0.0, 1.0)
-
-    return rgb_image
+    image = np.clip(image, 0.0, 1.0)
+    image[:, :, 1] -= 0.5
+    image[:, :, 2] -= 0.5
+    matrix = np.array([[1.0, 0.0, 1.5748], [1.0, -0.1873, -0.4681], [1.0, 1.8556, 0.0]], dtype=np.float32)
+    rgb_image = image @ matrix.T
+    return np.clip(rgb_image, 0.0, 1.0)
 
 
 def rgb2ycbcr_bt601(image):
@@ -56,14 +48,11 @@ def rgb2ycbcr_bt601(image):
     Returns:
     Image (numpy.ndarray): YCbCr image with channels last.
     """
-    y = np.dot(image, np.array([0.299, 0.587, 0.114]))
-    cb = np.dot(image, np.array([-0.168736, -0.331264, 0.5])) + 0.5
-    cr = np.dot(image, np.array([0.5, -0.418688, -0.081312])) + 0.5
-
-    ycbcr_image = np.stack((y, cb, cr), axis=-1, dtype=np.float32)
-    ycbcr_image = np.clip(ycbcr_image, 0.0, 1.0)
-
-    return ycbcr_image
+    image = np.clip(image, 0.0, 1.0)
+    bt601_matrix = np.array([[0.299, 0.587, 0.114], [-0.168736, -0.331264, 0.5], [0.5, -0.418688, -0.081312]], dtype=np.float32)
+    bt601_offset = np.array([0.0, 0.5, 0.5], dtype=np.float32)
+    ycbcr = image @ bt601_matrix.T + bt601_offset
+    return np.clip(ycbcr, 0.0, 1.0)
 
 
 def ycbcr2rgb_bt601(image):
@@ -76,17 +65,12 @@ def ycbcr2rgb_bt601(image):
     Returns:
     Image (numpy.ndarray): RGB image with channels last.
     """
-    image[:, :, 1] = image[:, :, 1] - 0.5
-    image[:, :, 2] = image[:, :, 2] - 0.5
-
-    r = np.dot(image, np.array([1.0, 0.0, 1.402]))
-    g = np.dot(image, np.array([1.0, -0.344136, -0.714136]))
-    b = np.dot(image, np.array([1.0, 1.772, 0.0]))
-
-    rgb_image = np.stack((r, g, b), axis=-1, dtype=np.float32)
-    rgb_image = np.clip(rgb_image, 0.0, 1.0)
-
-    return rgb_image
+    image = np.clip(image, 0.0, 1.0)
+    image[:, :, 1] -= 0.5
+    image[:, :, 2] -= 0.5
+    matrix = np.array([[1.0, 0.0, 1.402], [1.0, -0.344136, -0.714136], [1.0, 1.772, 0.0]], dtype=np.float32)
+    rgb_image = image @ matrix.T
+    return np.clip(rgb_image, 0.0, 1.0)
 
 
 def bilinear(image, scaling_factor):
