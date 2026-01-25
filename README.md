@@ -25,6 +25,7 @@ Regarding the suffixes:
 - `DS`: Luma doublers trained to denoise and sharpen.
 - `DN`: Luma doublers trained to denoise and soften.
 - `Chroma`: Trained to reconstruct chroma. These are intended to be used on 4:2:0 BT.709 YCbCr content, and chroma must be upscaled with bilinear first.
+- `Chroma_DN`: Trained to reconstruct and strongly denoise chroma. These are intended to be used on 4:2:0 BT.709 YCbCr content, and chroma must be upscaled with bilinear first.
 - `JPEG444`: Trained to clean JPEG artifacts. These are intended to be used on 4:4:4 JPEGs.
 - `JPEG420`: Trained to clean JPEG artifacts. These are intended to be used on 4:2:0 JPEGs.
 
