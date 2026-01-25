@@ -28,7 +28,7 @@ Regarding the suffixes:
 - `JPEG444`: Trained to clean JPEG artifacts. These are intended to be used on 4:4:4 JPEGs.
 - `JPEG420`: Trained to clean JPEG artifacts. These are intended to be used on 4:2:0 JPEGs.
 
-You may occasionaly find some experimental models under the `Experiments` directory.
+You may occasionally find some experimental models under the `Experiments` directory.
 
 ## mpv Instructions
 Add something like this to your mpv config:
