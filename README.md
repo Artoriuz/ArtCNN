@@ -1,7 +1,7 @@
 # ArtCNN
 
 ## Overview
-ArtCNN is a collection of simple SISR CNNs aimed at anime content.
+ArtCNN is a collection of simple SISR models aimed at anime content.
 
 Two distinct architectures are currently offered:
 - `C`: Original ArtCNN models optimised mostly for speed. These should only be used for real-time tasks like video playback. The architecture consists of a series of convolution layers aided by a single long-skip connection. Offered in the ONNX format and as GLSL shaders.
@@ -35,7 +35,7 @@ You may occasionally find some experimental models under the `Experiments` direc
 Add something like this to your mpv config:
 ```
 vo=gpu-next
-glsl-shader="path/to/shader/ArtCNN_C4F32_DS.glsl"
+glsl-shader="path/to/shader/ArtCNN_C4F32.glsl"
 ```
 
 ## VapourSynth Instructions
