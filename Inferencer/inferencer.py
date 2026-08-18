@@ -17,11 +17,20 @@ def process_image(image, task, model, chroma_model=None):
     """
     Runs the appropriate inference pipeline for a single image.
     """
-    if task == "rgb":
+    if task == "ycbcr":
+        image = rgb2ycbcr_bt709(image)
         engine = Engine(model)
-        r, g, b = unstack(image)
-        return stack(engine.run(r), engine.run(g), engine.run(b))
-    elif task == "ycbcr":
+        return ycbcr2rgb_bt709(engine.run(image))
+    elif task == "chroma":
+        if chroma_model is None:
+            raise ValueError("Chroma model is required for Chroma task.")
+        engine = Engine(chroma_model)
+        image = rgb2ycbcr_bt709(image)
+        y, cb, cr = unstack(image)
+        pred = engine.run(stack(y, cb, cr))
+        pred_cb, pred_cr = unstack(pred)
+        return ycbcr2rgb_bt709(stack(y, pred_cb, pred_cr))
+    elif task == "luma-chroma":
         if chroma_model is None:
             raise ValueError("Chroma model is required for YCbCr task.")
         luma_engine = Engine(model)
@@ -34,6 +43,10 @@ def process_image(image, task, model, chroma_model=None):
         pred = chroma_engine.run(stack(pred_y, cb, cr))
         pred_cb, pred_cr = unstack(pred)
         return ycbcr2rgb_bt709(stack(pred_y, pred_cb, pred_cr))
+    elif task == "luma-luma-luma":
+        engine = Engine(model)
+        r, g, b = unstack(image)
+        return stack(engine.run(r), engine.run(g), engine.run(b))
     else:
         engine = Engine(model)
         return engine.run(image)
@@ -55,9 +68,9 @@ def run_inference(inputs, task, model, chroma_model=None, self_ensemble=False, m
 
 parser = ArgumentParser(description="ONNX Inferencer")
 parser.add_argument("input", help="Input image or directory")
-parser.add_argument("-m", "--model", help="ArtCNN Model", default="ArtCNN_R16F96.onnx")
+parser.add_argument("-m", "--model", help="ArtCNN Model")
 parser.add_argument("-cm", "--chroma-model", help="ArtCNN Chroma Model")
-parser.add_argument("-t", "--task", help="Task to perform", choices=["luma", "rgb", "ycbcr", "denoise"], default="luma")
+parser.add_argument("-t", "--task", help="Task to perform", choices=["luma", "rgb", "ycbcr", "chroma", "luma-chroma", "luma-luma-luma"], default="luma")
 parser.add_argument("--self-ensemble", action="store_true", help="Enable self-ensemble inference")
 args = parser.parse_args()
 
@@ -69,6 +82,11 @@ elif input_path.is_file():
     inputs = [input_path]
 else:
     raise FileNotFoundError(f"Input path {input_path} does not exist or is not a file/directory.")
+
+if not (args.model or args.chroma_model):
+    raise ValueError("A model must be given.")
+elif args.task == "chroma":
+    args.model = args.chroma_model
 
 mode = "L" if args.task == "luma" else "RGB"
 run_inference(inputs, args.task, args.model, args.chroma_model, args.self_ensemble, mode)
