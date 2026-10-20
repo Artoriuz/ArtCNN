@@ -5,4 +5,4 @@ These shaders are trained to double YCbCr frames taking chroma subsampling into 
 
 - `YCbCr`: Simply upscales.
 - `YCbCr_DN`: Upscales while taking noise into account. Denoises.
-- `YCbCr_DS`: Upscales while taking noise and blur into account. Denoises and sharpens.
+- `YCbCr_DS`: Upscales while taking noise, blur and scaling artifacts into account. Denoises and sharpens.
